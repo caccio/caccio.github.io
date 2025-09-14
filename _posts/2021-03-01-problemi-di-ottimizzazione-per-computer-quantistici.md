@@ -2,9 +2,10 @@
 layout: post
 title: "Problemi di ottimizzazione per computer quantistici"
 date: 2021-03-01 00:00:00 -0000
-categories: [Quantum Computing]
-tags: [Quantum computing, Optimization]
+categories: Quantum_Computing
+tags: Quantum Computing, Optimization
 math: true
+author: Stefano Cazzella
 ---
 La risoluzione euristica di problemi di ottimizzazione rientra fra le prime applicazioni di modelli computazionali basati sulla meccanica quantistica per la risoluzione di problemi reali in contesti di business.
 
