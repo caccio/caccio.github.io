@@ -6,6 +6,7 @@ categories: Quantum_Computing
 tags: D-Wave Ising Optimization Quantum_Annealing QUBO
 math: true
 author: Stefano Cazzella
+excerpt: La risoluzione di problemi di ottimizzazione è fra le prime applicazioni concrete dell’attuale generazione di computer quantistici per la risoluzione di problemi reali in contesti di business. Un semplice esempio illustra come tali problemi vadano formulati sotto il profilo matematico e come questi possano essere risolti con le librerie rilasciate da D-Wave (prima azienda a realizzare computer quantistici specializzati per la risoluzione di tale classe di problemi).
 ---
 La risoluzione euristica di problemi di ottimizzazione rientra fra le prime applicazioni di modelli computazionali basati sulla meccanica quantistica per la risoluzione di problemi reali in contesti di business.
 

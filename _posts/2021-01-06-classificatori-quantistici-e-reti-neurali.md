@@ -6,6 +6,7 @@ categories: Advanced_Analytics Quantum_Computing
 tags: Advanced_Analytics Quantum_Computing Neural_Networks Variational_Classifier
 math: true
 author: Stefano Cazzella
+excerpt: I Variational Classifier sono una delle possibili applicazioni pratiche della computazione quantistica all’ambito del machine learning. Essi hanno alcune analogie con le reti neurali sia nella struttura topologica che nelle tecniche di addestramento. Il confronto fra i due modelli può quindi essere utile per capire meglio i primi, partendo dai secondi.
 ---
 
 Pur non essedo squisitamente tecnica, la lettura presuppone una conoscenza di base su tematiche di machine leraning e computazione quantistica. Potete trovare alcune informazioni introduttive ai seguenti link:
