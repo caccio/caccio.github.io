@@ -1,8 +1,9 @@
+---
 layout: post
 title: "Problemi di ottimizzazione per computer quantistici"
 date: 2021-03-01 00:00:00 -0000
 categories: Quantum_Computing
-
+---
 La risoluzione euristica di problemi di ottimizzazione rientra fra le prime applicazioni di modelli computazionali basati sulla meccanica quantistica per la risoluzione di problemi reali in contesti di business.
 
 Si tratta di quei problemi in cui esistono un numero molto elevato di scelte che un'azienda può operare e un modello matematico che sia in grado di valutare numericamente quanto ciascuna combinazione di tali scelte soddisfi gli obiettivi aziendali. Il numero di combinazioni è però così elevato (infinito nel caso in cui le scelte riguardino un dominio continuo) da rendere non perseguibile in pratica la ricerca esaustiva della soluzione migliore che consisterebbe nel calcolare il valore corrispondente a ciascuna combinazione e scegliere quella cui corrisponde il valore maggiore o minore (a seconda dell'obiettivo).
@@ -39,7 +40,7 @@ def getQuadraticTerms(weights) :
     model = {}
     for i in range(0,N) :
         for j in range (i+1,N) :
-            model&#91;(i, j)] = weights&#91;i]*weights&#91;j]
+            model[(i, j)] = weights[i]*weights[j]
     return model
 
 # questo è il codice per la definizione e risoluzione del problema
