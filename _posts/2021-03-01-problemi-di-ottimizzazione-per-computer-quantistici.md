@@ -2,7 +2,9 @@
 layout: post
 title: "Problemi di ottimizzazione per computer quantistici"
 date: 2021-03-01 00:00:00 -0000
-categories: Quantum_Computing
+categories: [Quantum Computing]
+tags: [Quantum computing, Optimization]
+math: true
 ---
 La risoluzione euristica di problemi di ottimizzazione rientra fra le prime applicazioni di modelli computazionali basati sulla meccanica quantistica per la risoluzione di problemi reali in contesti di business.
 
@@ -12,19 +14,27 @@ In termini matematici, se $$x = x_1, \dots, x_n$$ è il vettore delle possibili 
 
 $$x^{\star} = \underset{ x \in D}{\arg\min} H(x) = \underset{x \in D}{\arg\max} - H(x)$$
 
-Diverse aziende stano sperimentando metodi risolutivi che sfruttano le <strong>tecnologie quantistiche</strong> per trovare una soluzione ottimale ad alcuni problemi aziendali. Il primo esempio Italiano che ha attirato la mia attenzione, circa un anno fa, è quello di [TIM](https://www.techradar.com/news/tim-uses-quantum-computing-to-optimise-4g-5g) che ha utilizzato, prima in Europa, tale approccio per l'ottimizzazione della propria rete 4G/5G; non mancano altri esempi di applicazioni reali in mercati differenti o per problemi differenti.
+Diverse aziende stano sperimentando metodi risolutivi che sfruttano le **tecnologie quantistiche** per trovare una soluzione ottimale ad alcuni problemi aziendali. Il primo esempio Italiano che ha attirato la mia attenzione, circa un anno fa, è quello di [TIM](https://www.techradar.com/news/tim-uses-quantum-computing-to-optimise-4g-5g) che ha utilizzato, prima in Europa, tale approccio per l'ottimizzazione della propria rete 4G/5G; non mancano altri esempi di applicazioni reali in mercati differenti o per problemi differenti.
 
-La prima azienda a realizzare computer quantistici dedicati alla risoluzione di questa tipologia di problemi è stata <strong>D-Wave</strong>, ma altre aziende stanno sviluppando soluzioni concorrenti basate spesso su una combinazione di computazione classica e quantistica.
+La prima azienda a realizzare computer quantistici dedicati alla risoluzione di questa tipologia di problemi è stata **D-Wave**, ma altre aziende stanno sviluppando soluzioni concorrenti basate spesso su una combinazione di computazione classica e quantistica.
 
-L'euristica adottata per la risoluzione di tali problemi è detta <em>Quantum Annealing</em> e si basa su due principi cardine della meccanica quantistica: la sovrapposizione degli stati (che consente di rappresentare contemporaneamente tutte le possibili soluzioni) e il tunnel quantistico che consente di oltrepassare le barriere di potenziale alla ricerca di uno stato fondamentale a energia minima (che rappresenterà la soluzione ottimale).
+L'euristica adottata per la risoluzione di tali problemi è detta *Quantum Annealing* e si basa su due principi cardine della meccanica quantistica: la sovrapposizione degli stati (che consente di rappresentare contemporaneamente tutte le possibili soluzioni) e il tunnel quantistico che consente di oltrepassare le barriere di potenziale alla ricerca di uno stato fondamentale a energia minima (che rappresenterà la soluzione ottimale).
 
-Tale tecnica risolutiva si applica ad una particolare formulazione di problemi di ottimizzazione nota come <strong>QUBO </strong>(Quadratic Unconstrained Binary Optimization) o ad una sua variante meglio nota come modello di <strong>Ising</strong>. Nel primo caso le variabili del modello sono di tipo binario, mentre nel secondo queste assumono come valore 1 o -1. In entrambi i casi la funzione da minimizzare (o massimizzare) è espressa come polinomio di secondo grado $$x^{\star} = \underset{x \in \{-1,1\}^n}{\arg\min} { }  \sum_{i=1}^{n} {\sum_{j=i}^{n} {h_{i,j} x_i x_j}}$$
+Tale tecnica risolutiva si applica ad una particolare formulazione di problemi di ottimizzazione nota come **QUBO** (Quadratic Unconstrained Binary Optimization) o ad una sua variante meglio nota come modello di **Ising**. Nel primo caso le variabili del modello sono di tipo binario, mentre nel secondo queste assumono come valore 1 o -1. In entrambi i casi la funzione da minimizzare (o massimizzare) è espressa come polinomio di secondo grado $$x^{\star} = \underset{x \in \{-1,1\}^n}{\arg\min} { }  \sum_{i=1}^{n} {\sum_{j=i}^{n} {h_{i,j} x_i x_j}}$$
 
 ## Esempio di applicazione del modello di Ising ##
 
 Un esempio scolastico di applicazione del modello di Ising è rappresentato dal problema di distribuire uniformemente una serie di container su due navi cargo in modo da equilibrarne il peso. Le variabili $$x_i \in \{-1,1\}$$ rappresentano la scelta di caricare il container i-esimo di peso $$w_i$$ sulla nave A ($$x_i = -1$$) piuttosto che sulla nave B ($$x_i = 1$$). 
 
-La funzione da minimizzare è quella che misura la differenza (in valore assoluto) fra il peso del carico della nave A e quello della nave B che, tenendo conto dei segni assunti dalle variabili \(x_i\), può quindi essere scritta come $$H = \left| \sum_{i=1}^{n} {w_i x_i} \right|$$ Essa può essere formulata equivalentemente anche come $$H = \left( \sum_{i=1}^{n} {w_i x_i} \right)^2$$ avendo sostituito l'operatore di valore assoluto con quello di elevazione al quadrato. Sviluppando il quadrato del polinomio di primo grado, e tenendo conto che $$w_i^2 x_i^2$$ assume lo stesso valore indipendentemente dal valore assunto da $$x_i$$ ed è quindi ininfluente ai fini della minimizzazione di $$H$$, si ottiene $$H = \sum_{i=1}^{n} {\sum_{j=i+1}^{n} 2{w_i w_j x_i x_j}}$$ che coincide esattamente con la formulazione generale vista in precedenza in cui $$h_{i,j} = 2 w_i w_j$$.
+La funzione da minimizzare è quella che misura la differenza (in valore assoluto) fra il peso del carico della nave A e quello della nave B che, tenendo conto dei segni assunti dalle variabili $$x_i$$, può quindi essere scritta come
+
+$$H = \left| \sum_{i=1}^{n} {w_i x_i} \right|$$
+
+Essa può essere formulata equivalentemente anche come
+
+$$H = \left( \sum_{i=1}^{n} {w_i x_i} \right)^2$$ 
+
+avendo sostituito l'operatore di valore assoluto con quello di elevazione al quadrato. Sviluppando il quadrato del polinomio di primo grado, e tenendo conto che $$w_i^2 x_i^2$$ assume lo stesso valore indipendentemente dal valore assunto da $$x_i$$ ed è quindi ininfluente ai fini della minimizzazione di $$H$$, si ottiene $$H = \sum_{i=1}^{n} {\sum_{j=i+1}^{n} 2{w_i w_j x_i x_j}}$$ che coincide esattamente con la formulazione generale vista in precedenza in cui $$h_{i,j} = 2 w_i w_j$$.
 
 ## Risoluzione con D-Wave (Simulated Annealing) ##
 
