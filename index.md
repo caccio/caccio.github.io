@@ -1,5 +1,6 @@
 ---
 layout: default
+title: Caccio's Blog
 ---
 
 # Welcome to My Blog
