@@ -6,6 +6,7 @@ categories: Quantum_Computing Software
 tags: Q# QISKIT Variational_Classifier
 math: false
 author: Stefano Cazzella
+permalink: /cross-quantum-classifier
 excerpt: E’ disponibile il repository Git con la mia versione di un Quantum Variational Classifier che può essere eseguito con diversi simulatori e su physical quantum processors disponibili in cloud come servizi computazionali.
 ---
 Ho reso pubblico il repository Git con la mia versione di un Quantum Variational Classifier che può essere eseguito con diversi simulatori e su physical quantum processors disponibili in cloud come servizi computazionali.

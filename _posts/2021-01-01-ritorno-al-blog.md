@@ -6,6 +6,7 @@ categories: Blog
 tags: Blog
 math: false
 author: Stefano Cazzella
+permalink: /ritorno-al-blog
 excerpt: Sono diversi anni che non scrivo, ma quest’anno appena concluso con i vari lockdown e l’isolamento forzato hanno fatto rivivere la necessità di condividere e comunicare idee e riflessioni. In questo ultimo periodo mi sto interessando alla computazione quantistica, quindi questo è uno dei primi argomenti su cui ho ripreso a scrivere.
 ---
 Sono diversi anni che non scrivo, e francamente non so neanche perché ho lasciato aperto il BLOG. Praticamente la totalità degli altri blog presenti nel blogroll o citati nei vari post non esistono più. Penso di aver tenuto aperto il blog come *memoria* di quanto scritto negli anni.

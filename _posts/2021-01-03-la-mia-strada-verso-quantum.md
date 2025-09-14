@@ -6,6 +6,7 @@ categories: Quantum_Computing
 tags: Q# QISKIT
 math: false
 author: Stefano Cazzella
+permalink: /la-mia-strada-verso-quantum
 excerpt: In questo post è riassunto il percorso fatto per approfondire alcuni aspetti della computazione quantistica indicando libri, articoli e corsi che hanno maggiormente contribuito alla realizzazione di un modello di machine learning quantistico.
 ---
 Mi sono laureato in Ingegneria Informatica nel 2001 alla Sapienza. In quegli anni ai computer quantistici venivano dedicati giusto pochi cenni nel corso di informatica teorica. Erano considerati un po' come una chimera, un prodigio in grado di rendere trattabili problemi altrimenti intrattabili. Più simili ad una speculazione filosofica che ad un prodotto della tecnica. Così sono rimasti per me per molti anni, mentre mi interessavo a tematiche diverse legate al mondo dei dati e del valore delle informazioni.
