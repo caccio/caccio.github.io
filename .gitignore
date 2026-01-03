@@ -1,0 +1,38 @@
+# Jekyll / GitHub Pages
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Bundler / Ruby
+.bundle/
+vendor/bundle/
+
+# RubyGems packaging
+*.gem
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+desktop.ini
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Optional: Jekyll incremental build metadata (older setups)
+.jekyll-cache/
+
+# Node (only if you later add tooling)
+node_modules/
