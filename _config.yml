@@ -3,6 +3,6 @@ markdown: kramdown
 kramdown:
   input: GFM
   math_engine: mathjax
-title: Caccio's homepage
-description: Porting on github.io of my old blog contents!
+title: Caccio's BLOG
+description: Recupero dei contenuti più recenti del mio blog!
 author: Stefano Cazzella

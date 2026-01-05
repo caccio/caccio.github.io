@@ -31,8 +31,5 @@ desktop.ini
 *.userosscache
 *.sln.docstates
 
-# Optional: Jekyll incremental build metadata (older setups)
-.jekyll-cache/
-
 # Node (only if you later add tooling)
 node_modules/
