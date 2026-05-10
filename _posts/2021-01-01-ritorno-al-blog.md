@@ -2,8 +2,8 @@
 layout: post
 title: "Ritorno al blog"
 date: 2021-01-01
-categories: Blog
-tags: Blog
+categories: [blog]
+tags: [blog]
 math: false
 author: Stefano Cazzella
 permalink: /ritorno-al-blog

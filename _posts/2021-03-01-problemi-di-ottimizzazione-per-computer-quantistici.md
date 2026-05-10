@@ -2,8 +2,8 @@
 layout: post
 title: "Problemi di ottimizzazione per computer quantistici"
 date: 2021-03-01
-categories: Quantum_Computing
-tags: D-Wave Ising Optimization Quantum_Annealing QUBO
+categories: [quantum-computing]
+tags: [d-wave, ising, optimization, quantum-annealing, qubo]
 math: true
 author: Stefano Cazzella
 permalink: /problemi-di-ottimizzazione-per-computer-quantistici

@@ -2,8 +2,8 @@
 layout: post
 title: "La mia strada verso Quantum"
 date: 2021-01-03
-categories: Quantum_Computing
-tags: Q# QISKIT
+categories: [quantum-computing]
+tags: [q-sharp, qiskit]
 math: false
 author: Stefano Cazzella
 permalink: /la-mia-strada-verso-quantum

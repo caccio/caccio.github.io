@@ -23,3 +23,5 @@ title: Caccio's Blog
 <br/>
 <hr/>
 {% endfor %}
+
+© 2021-26 Stefano Cazzella — Contenuti distribuiti con licenza CC BY-NC 4.0

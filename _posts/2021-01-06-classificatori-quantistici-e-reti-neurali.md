@@ -2,8 +2,8 @@
 layout: post
 title: "Classificatori quantistici e reti neurali"
 date: 2021-01-06
-categories: Advanced_Analytics Quantum_Computing
-tags: Advanced_Analytics Quantum_Computing Neural_Networks Variational_Classifier
+categories: [advanced-analytics, quantum-computing]
+tags: [advanced-analytics, quantum-computing, neural-networks, variational-classifier]
 math: true
 author: Stefano Cazzella
 permalink: /classificatori-quantistici-e-reti-neurali

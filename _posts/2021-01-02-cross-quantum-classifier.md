@@ -2,8 +2,8 @@
 layout: post
 title: "Cross Quantum Classifier"
 date: 2021-02-01
-categories: Quantum_Computing Software
-tags: Q# QISKIT Variational_Classifier
+categories: [quantum-computing, software]
+tags: [q-sharp, qiskit, variational-classifier]
 math: false
 author: Stefano Cazzella
 permalink: /cross-quantum-classifier
