@@ -33,3 +33,4 @@ desktop.ini
 
 # Node (only if you later add tooling)
 node_modules/
+.github/skills/*
