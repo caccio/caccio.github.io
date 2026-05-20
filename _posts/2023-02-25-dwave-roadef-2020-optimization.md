@@ -1,18 +1,18 @@
 ---
 layout: post
 title: "Un esperimento di Quantum Optimization su un problema reale: dalla challenge ROADEF/EURO 2020 a D-Wave"
-date: 2026-05-18
+date: 2023-02-25
 categories: [quantum-computing]
 tags: [quantum-computing, optimization, d-wave, operations-research, roadef]
 math: false
 author: Stefano Cazzella
 permalink: /dwave-roadef-2020-optimization
-excerpt: Un esperimento di quantum optimization applicato a un problema reale di maintenance planning: dalla challenge ROADEF/EURO 2020 a una formulazione quadratica risolta con il solver ibrido di D-Wave.
+excerpt: I problemi di ottimizzazione rappresentano il primo ambito in cui un approccio quantistico - di tipo inspired o basato su annealer - può offrire vantaggi concreti. Per valutare questo potenziale, ho deciso di partire da un problema reale di ottimizzazione industriale, formularlo come modello quadratico con variabili binarie e provare a risolverlo utilizzando il solver ibrido di D-Wave.
 ---
 
-Negli ultimi anni si parla molto di Quantum Computing, ma spesso il dibattito resta confinato a esempi didattici o a problemi costruiti appositamente per dimostrare una tecnologia. In questo esperimento ho voluto fare qualcosa di diverso: partire da un problema reale di ottimizzazione industriale, formularlo come modello quadratico con variabili binarie e provare a risolverlo utilizzando il solver ibrido di D-Wave.
+I problemi di ottimizzazione rappresentano il primo ambito in cui un approccio quantistico - di tipo inspired o basato su annealer - può offrire vantaggi concreti. Per valutare questo potenziale, ho deciso di partire da un problema reale di ottimizzazione industriale, formularlo come modello quadratico con variabili binarie e provare a risolverlo utilizzando il solver ibrido di D-Wave.
 
-Il notebook completo dell'esperimento è disponibile nel repository [ROADEF2020-QIO](https://github.com/caccio/ROADEF2020-QIO). Nel notebook sono riportati sia la formulazione del problema sia il codice utilizzato per costruire il modello e inviarlo al solver di D-Wave.
+Il notebook completo dell'esperimento è disponibile nel repository [ROADEF2020-QIO](https://github.com/caccio/ROADEF2020-QIO). Nel notebook sono riportati sia la formulazione matematica del problema sia il codice utilizzato per costruire il modello e inviarlo al solver di D-Wave.
 
 ## L'origine del problema: la challenge ROADEF/EURO 2020
 
@@ -30,9 +30,12 @@ Ogni intervento ha una durata che può dipendere dalla data di avvio, richiede d
 
 Nel notebook ho rappresentato il problema attraverso variabili binarie del tipo `x_{i,s}`, dove la variabile vale 1 se l'intervento `i` inizia al tempo `s`, e 0 altrimenti.
 
-L'obiettivo è minimizzare il rischio medio complessivo del piano, calcolato aggregando i rischi associati agli interventi attivi nei diversi istanti temporali e nei diversi scenari considerati. Il notebook formalizza esplicitamente anche i vincoli principali: ogni intervento deve essere schedulato una e una sola volta, l'utilizzo delle risorse deve rimanere entro i limiti minimi e massimi previsti e le esclusioni operative devono essere rispettate.
+L'obiettivo è minimizzare il rischio medio complessivo del piano, calcolato aggregando i rischi associati agli interventi attivi nei diversi istanti temporali e nei diversi scenari considerati. Il notebook formalizza esplicitamente anche i vincoli principali: 
+- ogni intervento deve essere schedulato una e una sola volta,
+- l'utilizzo delle risorse deve rimanere entro i limiti minimi e massimi previsti,
+- le esclusioni operative devono essere rispettate.
 
-Una nota tecnica: nel notebook il modello viene implementato come *Constrained Quadratic Model*, usando variabili binarie e vincoli espliciti. Dal punto di vista concettuale siamo molto vicini a una formulazione QUBO, ma con il vantaggio pratico di mantenere i vincoli separati invece di trasformarli tutti in penalità nella funzione obiettivo.
+Una nota tecnica: nel notebook il modello viene implementato come *Constrained Quadratic Model*, usando variabili binarie e vincoli espliciti. Dal punto di vista concettuale siamo molto vicini a una formulazione QUBO, ma con il vantaggio pratico di mantenere i vincoli separati invece di trasformarli tutti in penalità nella funzione obiettivo. L'Hybrid Solver di D-Wave è in grado di gestire direttamente questo tipo di modello, il che semplifica la formulazione e può migliorare la qualità delle soluzioni ammissibili trovate.
 
 ## La dimensione del modello
 
@@ -40,38 +43,38 @@ Per l'esperimento è stata utilizzata l'istanza `C_14` della challenge. La dimen
 
 | Elemento | Valore |
 | --- | ---: |
-| Periodi temporali | 220 |
-| Interventi | 465 |
-| Risorse | 9 |
-| Esclusioni | 620 |
-| Scenari di rischio massimi per periodo | 103 |
-| Variabili binarie | 75.871 |
+| Orizzonte temporale (numero discreto di periodi) | 220 |
+| Interventi da pianificare | 465 |
+| Tipologie di risorse considerate | 9 |
+| Esclusioni operative | 620 |
+| Massimo numero di scenari di rischio per periodo | 103 |
+| Variabili binarie del modello | 75.871 |
 | Vincoli "ogni intervento parte una volta" | 465 |
 | Vincoli sulle risorse | 1.931 |
 | Vincoli quadratici di esclusione | 620 |
 | Totale vincoli modellati | 3.016 |
 
-Questi numeri sono importanti perché mostrano che non si tratta di un esempio giocattolo. Il modello contiene decine di migliaia di variabili binarie e migliaia di vincoli, inclusi vincoli quadratici. Il notebook riporta inoltre una matrice di workload di oltre 202 milioni di elementi logici, a conferma della scala del problema trattato.
+Questi numeri sono importanti perché mostrano che non si tratta di un esempio giocattolo. Il modello contiene decine di migliaia di variabili binarie e migliaia di vincoli, inclusi vincoli quadratici.
 
 ## Il benchmark classico
 
-La challenge ROADEF/EURO 2020 prevedeva benchmark classici basati sulle migliori soluzioni trovate dai team partecipanti. Per il set di istanze C, la tabella finale dei risultati riporta i migliori valori ottenuti sia con limite di tempo a 15 minuti sia con limite di tempo a 90 minuti. Per l'istanza `C14`, il miglior valore riportato nella configurazione a 90 minuti è pari a `26.457,114545`.
+La challenge ROADEF/EURO 2020 fornisce metriche di valutaione della qualità dei risultati e tutte le migliori soluzioni fornite dai team partecipanti che ho potuto utilizzare come benchmark classici per i risultati prodotti con D-Wave. Per l'istanza `C14`, il miglior valore ottenuto come rischio medio `Objective (mean risk)` nella configurazione a 15 minuti è pari a `23.203`.
 
 Questo riferimento è utile non tanto per dichiarare una superiorità generale del metodo quantum-hybrid rispetto ai migliori approcci classici, quanto per avere un termine di confronto concreto. La parte interessante è verificare se una formulazione compatibile con un solver ibrido possa produrre una soluzione ammissibile e competitiva su un problema reale, già studiato dalla comunità di Operations Research.
 
 ## L'utilizzo del solver ibrido di D-Wave
 
-Per la risoluzione è stato utilizzato il Leap Hybrid CQM Solver di D-Wave, attraverso `LeapHybridCQMSampler`. I solver ibridi di D-Wave combinano metodi classici e componenti quantum, con l'obiettivo di affrontare problemi applicativi formulati come modelli quadratici o non lineari.
+Per la risoluzione è stato utilizzato il Leap Hybrid CQM Solver di D-Wave, attraverso `LeapHybridCQMSampler`. I solver ibridi di D-Wave combinano metodi classici e QPU di tipo annealer, con l'obiettivo di affrontare problemi applicativi formulati come modelli quadratici o non lineari.
 
 Nel notebook il tempo minimo stimato dal sampler era di circa 58,9 secondi, ma per l'esperimento è stato usato un limite di 500 secondi. Il solver ha prodotto 131 campioni, di cui 10 ammissibili, cioè soluzioni che rispettano i vincoli del modello.
 
 ## Il risultato ottenuto
 
-Il risultato più interessante è che il solver ha prodotto una soluzione ammissibile, senza violazioni dei vincoli, e con un valore di rischio medio pari a `23.055` secondo il calcolo riportato nel notebook.
+Il risultato più interessante è che il solver ha prodotto una soluzione ammissibile, senza violazioni dei vincoli, e con un valore di rischio medio pari a `23.055` verificato con gli script di valutazione forniti con la challenge.
 
-Confrontando questo valore con il benchmark ufficiale della challenge per l'istanza `C14`, pari a `26.457,114545` nella configurazione a 90 minuti, l'esperimento mostra una soluzione leggermente migliore sulla metrica calcolata nel notebook.
+I valori ottenuti in tempi comparabili sono vicini al benchmark classico (appena migliorativi), il che indica che l'approccio quantum-hybrid può produrre soluzioni competitive.
 
-È importante essere prudenti nell'interpretazione. Non sto sostenendo che il Quantum Computing abbia "battuto" in senso generale gli algoritmi classici della challenge. Per fare questa affermazione servirebbe una campagna sperimentale più ampia, con tutte le istanze, gli stessi checker ufficiali, gli stessi limiti computazionali e una valutazione rigorosa della ripetibilità.
+È importante essere prudenti nell'interpretazione. Non sto sostenendo che il Quantum Computing abbia "battuto" in senso generale gli algoritmi classici della challenge. Per fare questa affermazione servirebbe una campagna sperimentale più ampia, con tutte le istanze,  gli stessi limiti computazionali e una valutazione rigorosa della ripetibilità.
 
 Però il risultato resta interessante: una formulazione binaria e quadratica risolta con un solver ibrido D-Wave è riuscita a produrre una soluzione corretta e competitiva su un problema industriale reale.
 
