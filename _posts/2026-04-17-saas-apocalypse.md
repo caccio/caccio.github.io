@@ -26,17 +26,15 @@ Non siamo davanti soltanto a una nuova generazione di strumenti AI. Siamo davant
 
 ## Il mercato non sta punendo il software. Sta riprezzando il suo futuro
 
-Come sempre, il mercato finanziario non fotografa semplicemente il presente. Prova ad anticipare il futuro.
+Come sempre, il mercato finanziario non fotografa semplicemente il presente. Prova ad anticipare il futuro. Il prezzo di un titolo non rappresenta soltanto i ricavi dell'ultimo trimestre o la qualità del prodotto oggi disponibile. Incorpora aspettative, rischi, scenari competitivi, probabilità di crescita e capacità prospettica di difendere i margini.
 
-Il prezzo di un titolo non rappresenta soltanto i ricavi dell'ultimo trimestre o la qualità del prodotto oggi disponibile. Incorpora aspettative, rischi, scenari competitivi, probabilità di crescita e capacità prospettica di difendere i margini.
-
-Per questo il sell-off sui titoli SaaS non va letto solo come una correzione settoriale. Va letto come una domanda strategica: **quale parte del valore dei prodotti SaaS è ancora difendibile nell'era degli agenti AI?**
+Per questo il sell-off sui titoli SaaS non va letto solo come una correzione settoriale, quanto iputtosto come un segnale della profonda trasformazione in atto che ribalta gli equilibri preorinati.
 
 ![Stock Table](/images/posts/2026/stock_table.png)
 
-Guardando alcuni dei titoli più rappresentativi del settore, il fenomeno appare evidente. L'immagine mostra cali molto significativi per aziende come Atlassian, Figma, Intuit, ServiceNow, SAP, Adobe, Salesforce, Oracle, DocuSign, Veeva e ADP.
+Guardando alcuni dei titoli più rappresentativi del settore, il fenomeno appare evidente. L'immagine mostra cali molto significativi per aziende come Atlassian, Figma, Intuit, ServiceNow, SAP, Adobe, Salesforce.
 
-Il dato interessante non è solo la dimensione del calo. È la natura delle aziende colpite.
+Il dato interessante non è solo la dimensione del calo. È la natura delle aziende colpite e la motivazione che se ne evince.
 
 **Atlassian** è particolarmente esposta perché vive al centro dei processi di produzione software: issue tracking, project management, collaboration, knowledge management. Ma proprio questi processi sono tra i primi a essere ridisegnati dagli agenti AI. Se un agente può leggere il codice, interpretare una user story, generare task, aprire pull request, aggiornare documentazione, il ruolo degli strumenti tradizionali di coordinamento che vivono ai margini della codebase dove gli agenti oeprano cambia radicalmente.
 
@@ -48,7 +46,7 @@ Il dato interessante non è solo la dimensione del calo. È la natura delle azie
 
 **ServiceNow, Salesforce, SAP e Oracle** sono casi più complessi. Da un lato sono incumbent con enorme profondità funzionale, relazioni enterprise consolidate e grandi basi installate. Dall'altro, il loro valore storico deriva anche dalla capacità di imporre modelli di processo standardizzati. Ed è proprio questa standardizzazione che gli agenti AI potrebbero mettere in discussione.
 
-Il punto non è che queste aziende spariranno. Il punto è che il mercato inizia a chiedersi se il modello SaaS tradizionale, applicazione standard, workflow predefiniti, logica di business incorporata nel prodotto, pricing per utente, sia ancora il modello dominante del prossimo ciclo tecnologico.
+Il punto non è che queste aziende spariranno. Il punto è che il mercato inizia a chiedersi se il modello SaaS tradizionale, applicazione standard, workflow predefiniti, logica di business incorporata nel prodotto, pricing per utente, sia ancora il *modello dominante del prossimo ciclo tecnologico*.
 
 ## Il contrasto con l'S&P 500 rende il segnale più forte
 
@@ -94,7 +92,7 @@ Le applicazioni SaaS diventano sistemi di record, sorgenti dati, servizi special
 
 La SaaS Apocalypse non va letta come una previsione catastrofista, ma come un avvertimento strategico.
 
-La domanda  non è *quali SaaS verranno sostituiti dagli agenti*, ma **quanta parte della logica di business è prigioniera di piattaforme chiuse e standardizzate.**
+La domanda  non è *quali SaaS verranno sostituiti dagli agenti*, ma **quanta parte della logica di business è prigioniera di piattaforme chiuse e standardizzate**.
 
 Se un processo è interamente incorporato in una piattaforma SaaS, modificarlo significa accettare i tempi, i costi e i vincoli di personalizzazione di quella piattaforma.
 
@@ -108,7 +106,7 @@ Il SaaS non scomparirà. Le piattaforme migliori evolveranno, incorporeranno age
 
 Ma qualcosa è cambiato. Per la prima volta da molti anni, il SaaS non appare più come l'esito inevitabile di ogni trasformazione digitale. Non è più ovvio che comprare una piattaforma standard sia sempre più conveniente che costruire una soluzione su misura. Non è più ovvio che la business logic debba vivere dentro applicazioni verticali. Non è più ovvio che il processo debba adattarsi allo strumento.
 
-La SaaS Apocalypse è il segnale che viene dal mondo finanziario di questo cambio di prospettiva in cui la personalizzazione del processo e non della piattaforma rappresenta una** leva strategica** in cui i le soluzioni custom tornano di moda. Non il software artigianale del passato. Ma software industrializzato, agentico, governato, misurabile, costruito intorno ai processi distintivi dell'impresa.
+La SaaS Apocalypse è il segnale che viene dal mondo finanziario di questo cambio di prospettiva in cui la personalizzazione del processo e non della piattaforma rappresenta una **leva strategica** in cui i le soluzioni custom tornano di moda. Non il software artigianale del passato. Ma software industrializzato, agentico, governato, misurabile, costruito intorno ai processi distintivi dell'impresa.
 
 Il mercato ha iniziato a prezzarlo.
 
