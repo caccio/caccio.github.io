@@ -7,11 +7,18 @@
   border-bottom: 1px solid var(--line);
   margin-bottom: 48px;
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  // Colonna testo occupa il resto; colonna immagine si adatta alla larghezza naturale.
+  grid-template-columns: 1fr auto;
   gap: 40px;
-  align-items: end;
+  align-items: center;
   cursor: pointer;
   position: relative; // necessario per lo stretched link
+
+  // Nessuna immagine: colonna singola, testo non troppo largo
+  &.hero--solo {
+    grid-template-columns: 1fr;
+    max-width: 680px;
+  }
 
   // Stretched link: copre tutta la card
   .hero-link {
@@ -96,6 +103,18 @@
   }
 }
 
+// Prima immagine del post hero — larghezza naturale, cappata
+.hero-img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: min(480px, 42%);   // non supera il 42% del contenitore
+  max-height: 420px;
+  object-fit: contain;
+  border-radius: var(--radius);
+  align-self: center;
+}
+
 // ── Post list (griglia 2 colonne) ─────────────────────────────────────
 .post-list {
   display: grid;
@@ -111,7 +130,9 @@
   cursor: pointer;
   transition: background .15s;
   color: inherit;
-  display: block;
+  // Flex colonna: row2/meta si posiziona sempre in fondo → allineamento tra le due celle della stessa riga
+  display: flex;
+  flex-direction: column;
   position: relative; // necessario per lo stretched link
 
   // Stretched link sull'h3: copre tutta la card, sta sotto le chip (z-index 0)
@@ -180,7 +201,8 @@
   }
 
   .row2 {
-    margin-top: 14px;
+    margin-top: auto;   // spinge il meta sempre al fondo della card
+    padding-top: 14px;  // gap minimo anche senza excerpt
     display: flex;
     align-items: center;
     gap: 10px;

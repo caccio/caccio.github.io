@@ -38,10 +38,20 @@ layout: default
 
   {%- comment -%} ── Hero ──────────────────────────────────────────── {%- endcomment -%}
   {%- comment -%}
-    Usiamo <div class="hero"> + stretched link sull'h1 per evitare link annidati:
-    le area-chip sono <a> e non possono stare dentro un altro <a>.
+    Prima immagine del post hero (src="..."): cerchiamo nel contenuto HTML già renderizzato.
+    Se trovata → la mostriamo; altrimenti fallback al placeholder gradiente (cover: true).
   {%- endcomment -%}
-  <div class="hero">
+  {%- assign _hero_img = "" -%}
+  {%- assign _img_parts = hero.content | split: 'src="' -%}
+  {%- if _img_parts.size > 1 -%}
+    {%- assign _hero_img = _img_parts[1] | split: '"' | first -%}
+  {%- endif -%}
+
+  {%- comment -%}
+    Usiamo <div class="hero"> + stretched link sull'h1 per evitare link annidati.
+    Classe hero--solo se non c'è immagine → grid a colonna singola.
+  {%- endcomment -%}
+  <div class="hero{% if _hero_img == '' and hero.cover == nil %} hero--solo{% endif %}">
     <div>
       <div class="hero-eyebrow">
         {%- for cat in hero.categories limit: 2 -%}
@@ -58,7 +68,12 @@ layout: default
       {%- endif -%}
       {%- include meta-line.html post=hero -%}
     </div>
-    {%- if hero.cover -%}
+    {%- if _hero_img != "" -%}
+      <img class="hero-img"
+           src="{{ _hero_img }}"
+           alt="{{ hero.title | escape }}"
+           loading="lazy" />
+    {%- elsif hero.cover -%}
       {%- include cover-art.html hue=hero.cover_hue label=hero.slug -%}
     {%- endif -%}
   </div>
