@@ -64,7 +64,7 @@ layout: default
         </a>
       </h1>
       {%- if hero.excerpt -%}
-        <p class="ex">{{ hero.excerpt | strip_html | truncate: 200 }}</p>
+        <p class="ex">{{ hero.excerpt | strip_html }}</p>
       {%- endif -%}
       {%- include meta-line.html post=hero -%}
     </div>

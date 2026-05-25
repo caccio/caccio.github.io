@@ -23,7 +23,7 @@
     </a>
   </h3>
   {%- if p.excerpt -%}
-    <p class="ex">{{ p.excerpt | strip_html | truncate: 140 }}</p>
+    <p class="ex">{{ p.excerpt | strip_html }}</p>
   {%- endif -%}
   <div class="row2">
     <span class="meta">
