@@ -32,7 +32,7 @@
     font-weight: var(--display-weight);
     letter-spacing: var(--display-tracking);
     margin-bottom: 18px;
-    text-wrap: balance;
+    // Niente text-wrap:balance né max-width: il titolo occupa tutta la larghezza del corpo
   }
 
   .deck {
@@ -40,8 +40,11 @@
     font-size: 19px;
     line-height: 1.5;
     color: var(--fg-soft);
-    max-width: 60ch;
+    // Niente max-width: stessa larghezza del corpo del post
     margin-bottom: 24px;
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
   }
 
   .post-meta-row {
