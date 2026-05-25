@@ -1,0 +1,23 @@
+- id: quantum
+  name: "Quantum Computing"
+  short: "Quantum"
+  desc: "Qubit, algoritmi quantistici, correzione d'errore e l'incrocio con l'hardware reale."
+  color: "oklch(0.55 0.16 270)"
+
+- id: ai
+  name: "Intelligenza Artificiale"
+  short: "AI"
+  desc: "Modelli, training, valutazione. Quando funziona, quando bara, quando fallisce."
+  color: "oklch(0.62 0.16 35)"
+
+- id: swe
+  name: "Ingegneria del Software"
+  short: "SWE"
+  desc: "Architettura, pratiche, mestiere. Note prese mentre costruisco cose."
+  color: "oklch(0.55 0.13 170)"
+
+- id: letture
+  name: "Note di lettura"
+  short: "Letture"
+  desc: "Paper, libri, talk. Riassunti onesti e cosa mi sono portato a casa."
+  color: "oklch(0.55 0.10 80)"

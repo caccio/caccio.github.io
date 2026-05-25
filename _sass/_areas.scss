@@ -1,0 +1,49 @@
+// ─── Pagine Aree ─────────────────────────────────────────────────────
+
+// ── Griglia indice aree (.cat-list) ───────────────────────────────────
+.cat-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+
+  .item {
+    padding: 28px 28px 28px 0;
+    border-bottom: 1px solid var(--line);
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+
+    &:nth-child(odd)  { border-right: 1px solid var(--line); }
+    &:nth-child(even) { padding-left: 28px; padding-right: 0; }
+
+    &:hover h3 .name { color: var(--accent); }
+
+    h3 {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: var(--display-weight);
+      letter-spacing: var(--display-tracking);
+      margin-bottom: 8px;
+
+      .n {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--fg-mute);
+        font-weight: 400;
+        letter-spacing: 0;
+      }
+
+      .name { transition: color .15s; }
+    }
+
+    p {
+      color: var(--fg-soft);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+  }
+}

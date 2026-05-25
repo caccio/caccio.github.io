@@ -1,0 +1,39 @@
+---
+# Front matter vuoto — necessario perché Jekyll processi questo file SCSS
+---
+
+// ── Design tokens (custom properties CSS) ─────────────────────────────
+@use "tokens";
+
+// ── Reset ─────────────────────────────────────────────────────────────
+@use "reset";
+
+// ── Layout base (.blog-root, .b-page) ─────────────────────────────────
+@use "layout";
+
+// ── Componenti riusabili (.tag, .cat, .meta, highlight, ...) ──────────
+@use "components";
+
+// ── Header ────────────────────────────────────────────────────────────
+@use "header";
+
+// ── Footer ────────────────────────────────────────────────────────────
+@use "footer";
+
+// ── Home (hero, post-list, archivio, home-cat-grid) ───────────────────
+@use "home";
+
+// ── Post singolo ──────────────────────────────────────────────────────
+@use "post";
+
+// ── Aree ──────────────────────────────────────────────────────────────
+@use "areas";
+
+// ── Punti (grafo, nuvola, toggle, rank) ───────────────────────────────
+@use "points";
+
+// ── About ─────────────────────────────────────────────────────────────
+@use "about";
+
+// ── Responsive (container queries — DEVE essere l'ultimo) ─────────────
+@use "responsive";

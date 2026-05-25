@@ -1,0 +1,42 @@
+---
+layout: default
+---
+{%- comment -%}
+  Generato da jekyll-archives per ogni categoria.
+  page.title = nome categoria (es. "quantum")
+  Cerchiamo i dati dell'area in _data/areas.yml
+{%- endcomment -%}
+{%- assign area_id = page.title | downcase -%}
+{%- assign area = site.data.areas | where: "id", area_id | first -%}
+{%- assign area_posts = site.categories[area_id] -%}
+
+<main class="b-page">
+  <div class="idx-hd">
+    <div class="crumbs">
+      <a href="{{ '/' | relative_url }}">home</a>
+      <span>/</span>
+      <a href="{{ '/aree/' | relative_url }}">aree</a>
+      <span>/</span>
+      <span>{{ area.short | default: area_id | downcase }}</span>
+    </div>
+
+    {%- if area -%}
+      <h1>{{ area.name }}</h1>
+      <p class="desc">{{ area.desc }}</p>
+    {%- else -%}
+      <h1>{{ area_id }}</h1>
+    {%- endif -%}
+
+    <div class="meta">{{ area_posts.size }} post in questa area</div>
+  </div>
+
+  {%- if area_posts.size > 0 -%}
+    <div class="post-list">
+      {%- for post in area_posts -%}
+        {%- include post-card.html post=post -%}
+      {%- endfor -%}
+    </div>
+  {%- else -%}
+    <p style="color:var(--fg-soft)">Nessun post in questa area.</p>
+  {%- endif -%}
+</main>

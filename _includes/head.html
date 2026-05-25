@@ -1,0 +1,104 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<title>
+  {%- if page.title -%}
+    {{ page.title | escape }} · {{ site.title | escape }}
+  {%- else -%}
+    {{ site.title | escape }}
+  {%- endif -%}
+</title>
+
+{%- if page.excerpt -%}
+  <meta name="description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: 160 | escape }}" />
+{%- else -%}
+  <meta name="description" content="{{ site.description | escape }}" />
+{%- endif -%}
+
+<!-- Open Graph -->
+<meta property="og:title"       content="{{ page.title | default: site.title | escape }}" />
+<meta property="og:description" content="{{ page.excerpt | default: site.description | strip_html | truncate: 160 | escape }}" />
+<meta property="og:type"        content="{% if page.layout == 'post' %}article{% else %}website{% endif %}" />
+<meta property="og:url"         content="{{ page.url | absolute_url }}" />
+
+<!-- Canonical -->
+<link rel="canonical" href="{{ page.url | absolute_url }}" />
+
+<!-- SEO tag plugin -->
+{%- seo -%}
+
+<!-- RSS -->
+<link rel="alternate" type="application/rss+xml"
+      title="{{ site.title | escape }}"
+      href="{{ '/feed.xml' | relative_url }}" />
+
+<!-- Google Fonts: tutte e tre le varianti di pairing pre-caricate -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+     rel="stylesheet" />
+
+<!-- CSS principale -->
+<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
+
+<!-- KaTeX — caricato solo se il post ha has_math: true -->
+{%- if page.has_math -%}
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
+      integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+"
+      crossorigin="anonymous" />
+<script defer
+        src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
+        integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg"
+        crossorigin="anonymous"></script>
+<script defer
+        src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        crossorigin="anonymous"
+        onload="renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$',  right: '$$',  display: true},
+            {left: '\\[', right: '\\]', display: true},
+            {left: '\\(', right: '\\)', display: false}
+          ],
+          throwOnError: false
+        });"></script>
+{%- endif -%}
+
+<!-- Mermaid — caricato solo se il post ha has_mermaid: true -->
+{%- if page.has_mermaid -%}
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: 'base',
+    themeVariables: {
+      fontFamily: 'ui-monospace, Menlo, monospace',
+      fontSize: '13px',
+      primaryColor: '#ffffff',
+      primaryTextColor: '#1a1612',
+      primaryBorderColor: '#cfc4ad',
+      lineColor: '#8a7e6e',
+      secondaryColor: '#f3efe6',
+      tertiaryColor: '#faf8f3'
+    },
+    flowchart: { padding: 10, curve: 'basis' }
+  });
+  // Converte i blocchi ```mermaid generati da Rouge in div .mermaid e li renderizza
+  document.addEventListener('DOMContentLoaded', async () => {
+    document.querySelectorAll('.language-mermaid pre, pre.language-mermaid').forEach(pre => {
+      const code = pre.querySelector('code') || pre;
+      const src = code.textContent || '';
+      const wrap = document.createElement('div');
+      wrap.className = 'mermaid-block';
+      const inner = document.createElement('div');
+      inner.className = 'mermaid';
+      inner.textContent = src;
+      wrap.appendChild(inner);
+      const container = pre.closest('.language-mermaid') || pre.closest('.highlighter-rouge') || pre;
+      container.replaceWith(wrap);
+    });
+    await mermaid.run();
+  });
+</script>
+{%- endif -%}

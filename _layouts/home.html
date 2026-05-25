@@ -1,0 +1,128 @@
+---
+layout: default
+---
+{%- comment -%}
+  Hero: post con featured: true oppure il più recente
+{%- endcomment -%}
+{%- assign hero = nil -%}
+{%- for post in site.posts -%}
+  {%- if post.featured -%}
+    {%- assign hero = post -%}
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- unless hero -%}
+  {%- assign hero = site.posts.first -%}
+{%- endunless -%}
+
+{%- comment -%}
+  Post recenti: i 6 successivi all'hero
+{%- endcomment -%}
+{%- assign all_posts = site.posts -%}
+{%- assign recent = "" | split: "" -%}
+{%- assign older  = "" | split: "" -%}
+{%- assign skip_hero = false -%}
+{%- for post in all_posts -%}
+  {%- if post.url == hero.url -%}
+    {%- assign skip_hero = true -%}
+    {%- continue -%}
+  {%- endif -%}
+  {%- if recent.size < 6 -%}
+    {%- assign recent = recent | push: post -%}
+  {%- else -%}
+    {%- assign older = older | push: post -%}
+  {%- endif -%}
+{%- endfor -%}
+
+<main class="b-page">
+
+  {%- comment -%} ── Hero ──────────────────────────────────────────── {%- endcomment -%}
+  {%- comment -%}
+    Usiamo <div class="hero"> + stretched link sull'h1 per evitare link annidati:
+    le area-chip sono <a> e non possono stare dentro un altro <a>.
+  {%- endcomment -%}
+  <div class="hero">
+    <div>
+      <div class="hero-eyebrow">
+        {%- for cat in hero.categories limit: 2 -%}
+          {%- include area-chip.html area_id=cat -%}
+        {%- endfor -%}
+      </div>
+      <h1>
+        <a class="hero-link" href="{{ hero.url | relative_url }}">
+          {{- hero.title | escape -}}
+        </a>
+      </h1>
+      {%- if hero.excerpt -%}
+        <p class="ex">{{ hero.excerpt | strip_html | truncate: 200 }}</p>
+      {%- endif -%}
+      {%- include meta-line.html post=hero -%}
+    </div>
+    {%- if hero.cover -%}
+      {%- include cover-art.html hue=hero.cover_hue label=hero.slug -%}
+    {%- endif -%}
+  </div>
+
+  {%- comment -%} ── Post recenti ──────────────────────────────────── {%- endcomment -%}
+  <section>
+    <div class="section-head">
+      <h2>post recenti</h2>
+      <div class="line"></div>
+      <span class="meta" style="font-size:11px">{{ site.posts.size }} totali</span>
+    </div>
+    <div class="post-list">
+      {%- for post in recent -%}
+        {%- include post-card.html post=post -%}
+      {%- endfor -%}
+    </div>
+  </section>
+
+  {%- comment -%} ── Archivio ─────────────────────────────────────── {%- endcomment -%}
+  {%- if older.size > 0 -%}
+  <section style="margin-top: 56px">
+    <div class="section-head">
+      <h2>archivio</h2>
+      <div class="line"></div>
+    </div>
+    <ul class="archive-list">
+      {%- for post in older -%}
+        {%- assign read_min = post.read_min -%}
+        {%- unless read_min -%}
+          {%- assign words = post.content | number_of_words -%}
+          {%- assign read_min = words | divided_by: 200 | plus: 1 -%}
+        {%- endunless -%}
+        <li>
+          <a class="archive-item" href="{{ post.url | relative_url }}">
+            <span class="archive-date meta">{{ post.date | date: "%-d %b %Y" }}</span>
+            <span class="archive-title">{{ post.title | escape }}</span>
+            <span class="archive-min meta">{{ read_min }}m</span>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </section>
+  {%- endif -%}
+
+  {%- comment -%} ── Footer aree ───────────────────────────────────── {%- endcomment -%}
+  <section class="home-cat-footer">
+    <div class="section-head">
+      <h2>esplora per area</h2>
+      <div class="line"></div>
+    </div>
+    <ul class="home-cat-grid">
+      {%- for area in site.data.areas -%}
+        {%- assign area_posts = site.categories[area.id] -%}
+        {%- assign area_count = area_posts | size -%}
+        <li>
+          <a class="home-cat-item" href="{{ '/aree/' | append: area.id | append: '/' | relative_url }}">
+            <span class="home-cat-dot" data-cat="{{ area.id }}"></span>
+            <span class="home-cat-name">{{ area.name }}</span>
+            <span class="home-cat-count">{{ area_count }}<span class="u"> post</span></span>
+            <span class="home-cat-arrow">→</span>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </section>
+
+</main>

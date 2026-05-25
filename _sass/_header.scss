@@ -1,0 +1,87 @@
+// ─── Header sticky ───────────────────────────────────────────────────
+
+.bh {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: color-mix(in oklab, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.bh-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+// Brand: dot accent + nome + sottotitolo mono
+.bh-brand {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  color: var(--fg);
+
+  .dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 2px;
+    flex-shrink: 0;
+    // allinea verticalmente con il testo
+    vertical-align: middle;
+    margin-bottom: 2px;
+  }
+
+  .sub {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--fg-mute);
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+}
+
+// Nav principale
+.bh-nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-left: auto;
+  font-size: 14px;
+
+  a {
+    color: var(--fg-soft);
+    transition: color .15s;
+    padding: 4px 0;
+    position: relative;
+    text-decoration: none;
+
+    &:hover { color: var(--fg); }
+
+    // Voce attiva: underline accent in fondo
+    &[aria-current="page"] {
+      color: var(--fg);
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -16px;
+        height: 2px;
+        background: var(--accent);
+      }
+    }
+  }
+}

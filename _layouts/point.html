@@ -1,0 +1,42 @@
+---
+layout: default
+---
+{%- comment -%}
+  Generato da jekyll-archives per ogni tag.
+  page.title = nome del tag
+{%- endcomment -%}
+{%- assign tag_name  = page.title -%}
+{%- assign tag_posts = site.tags[tag_name] -%}
+
+<main class="b-page">
+  <div class="idx-hd">
+    <div class="crumbs">
+      <a href="{{ '/' | relative_url }}">home</a>
+      <span>/</span>
+      <a href="{{ '/punti/' | relative_url }}">punti</a>
+      <span>/</span>
+      <span>{{ tag_name }}</span>
+    </div>
+    <h1>Post sul punto <span class="tag-h1">{{ tag_name }}</span></h1>
+    <p class="desc">
+      {{ tag_posts.size }} post collegati al punto &ldquo;{{ tag_name }}&rdquo;.
+      Un punto è un argomento tecnico specifico; le aree raggruppano i temi più ampi.
+    </p>
+  </div>
+
+  <p style="margin-bottom: 28px">
+    <a href="{{ '/punti/' | relative_url }}"
+       style="font: 11px var(--mono); color: var(--fg-soft)">← tutti i punti</a>
+  </p>
+
+  {%- if tag_posts.size > 0 -%}
+    <div class="post-list">
+      {%- for post in tag_posts -%}
+        {%- include post-card.html post=post -%}
+      {%- endfor -%}
+    </div>
+  {%- else -%}
+    <p style="color: var(--fg-soft)">Nessun post per questo punto.</p>
+  {%- endif -%}
+
+</main>

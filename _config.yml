@@ -1,8 +1,53 @@
-theme: jekyll-theme-minimal
+title: "Caccio's Blog"
+description: "Note tecniche su quantum computing, intelligenza artificiale e ingegneria del software."
+author: Stefano Cazzella
+email: stefano.cazzella@gmail.com
+url: "https://caccio.github.io"
+baseurl: ""
+
+# ── Permalink ──────────────────────────────────────────────────────────
+permalink: /post/:year/:month/:day/:slug/
+
+# ── Markdown ───────────────────────────────────────────────────────────
 markdown: kramdown
 kramdown:
   input: GFM
   math_engine: mathjax
-title: Caccio's BLOG
-description: Recupero dei contenuti più recenti del mio blog!
-author: Stefano Cazzella
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: "highlight"
+
+# ── Plugins ────────────────────────────────────────────────────────────
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-archives
+
+# ── jekyll-archives: genera /aree/:id/ e /punti/:tag/ ─────────────────
+jekyll-archives:
+  enabled:
+    - tags
+    - categories
+  layouts:
+    tag: point
+    category: area
+  permalinks:
+    tag: /punti/:name/
+    category: /aree/:name/
+
+# ── Tema ───────────────────────────────────────────────────────────────
+blog:
+  font_mode: editorial   # mono | editorial | grotesk
+  card_style: minimal    # minimal | bordered | shadow
+
+# ── Escludi dal build ──────────────────────────────────────────────────
+exclude:
+  - blog-theme-design/
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README.md
+  - CLAUDE.md
+  - docs/
+  - vendor/

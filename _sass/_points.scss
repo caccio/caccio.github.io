@@ -1,0 +1,253 @@
+// ─── Pagina Punti di Connessione ─────────────────────────────────────
+
+// ── Toggle vista Grafo / Nuvola ───────────────────────────────────────
+.view-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 28px;
+  padding: 4px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  width: max-content;
+  max-width: 100%;
+
+  button {
+    padding: 7px 16px;
+    border-radius: 999px;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--fg-soft);
+    transition: all .15s;
+
+    &:hover { color: var(--fg); }
+    &.on    { background: var(--fg); color: var(--bg); }
+  }
+
+  .view-count {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--fg-mute);
+    padding: 0 12px 0 4px;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+}
+
+// ── Nuvola pesata ─────────────────────────────────────────────────────
+.tag-cloud-w {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  padding: 28px 8px;
+  align-items: baseline;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.4;
+
+  .tag-w {
+    font-family: var(--serif);
+    letter-spacing: -0.012em;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    transition: color .15s, background .15s, transform .15s;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--accent) !important;
+      background: var(--accent-soft);
+      transform: translateY(-1px);
+    }
+
+    .n {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 400;
+      color: var(--fg-mute);
+      vertical-align: super;
+      line-height: 1;
+    }
+  }
+}
+
+// ── Knowledge Graph ───────────────────────────────────────────────────
+.tag-graph-wrap {
+  position: relative;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 8px;
+}
+
+.tag-graph {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 760 / 520;
+  // Sfondo a puntini sottile
+  background-image: radial-gradient(
+    circle,
+    color-mix(in oklab, var(--fg) 12%, transparent) 1px,
+    transparent 1.2px
+  );
+  background-size: 22px 22px;
+  background-position: 11px 11px;
+  border-radius: 8px;
+
+  // ── Archi ────────────────────────────────────────────────────────
+  .g-edge {
+    stroke: var(--fg-mute);
+    stroke-opacity: 0.22;
+    transition: stroke .15s, stroke-opacity .15s, stroke-width .15s;
+    pointer-events: none;
+
+    &.a { stroke: var(--accent); stroke-opacity: 0.7; }
+    &.d { stroke-opacity: 0.06; }
+  }
+
+  // ── Nodi ─────────────────────────────────────────────────────────
+  .g-node {
+    cursor: pointer;
+
+    .g-halo {
+      fill: var(--accent);
+      stroke: none;
+      opacity: 0;
+      transition: opacity .15s;
+    }
+
+    // Fill neutro — intensità scala con --tone (grado del nodo, 0..1).
+    // NON per categoria: i punti sono trasversali.
+    .g-dot {
+      fill: color-mix(in oklab, var(--fg) calc(35% + var(--tone, 0) * 50%), var(--bg-soft));
+      stroke: var(--bg);
+      stroke-width: 2;
+      transition: fill .15s, filter .15s, opacity .15s;
+    }
+
+    .g-label {
+      font: 500 11px var(--mono);
+      fill: var(--fg);
+      pointer-events: none;
+      transition: opacity .15s, font-size .15s, fill .15s;
+    }
+
+    .g-num {
+      font: 600 9px var(--mono);
+      fill: var(--bg);
+      pointer-events: none;
+    }
+
+    // Hover / active
+    &:hover .g-dot,
+    &.a .g-dot {
+      fill: var(--accent);
+      filter: drop-shadow(0 4px 10px color-mix(in oklab, var(--accent) 50%, transparent));
+    }
+
+    &.a .g-halo  { opacity: 0.18; }
+    &.a .g-label { font-size: 13px; fill: var(--accent); font-weight: 600; }
+
+    // Dim (tutti gli altri quando uno è in hover)
+    &.d .g-dot   { opacity: 0.18; }
+    &.d .g-label { opacity: 0.25; }
+    &.d .g-num   { opacity: 0.3; }
+  }
+}
+
+// ── Legenda grafo ─────────────────────────────────────────────────────
+.g-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+  padding: 14px 8px 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--fg-soft);
+
+  .g-leg-scale,
+  .g-leg-edge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .g-leg-dot {
+    display: inline-block;
+    border-radius: 50%;
+    background: var(--fg-soft);
+    vertical-align: middle;
+
+    &.s1 { width: 6px;  height: 6px;  opacity: 0.55; }
+    &.s2 { width: 10px; height: 10px; opacity: 0.75; }
+    &.s3 { width: 14px; height: 14px; opacity: 1;    }
+  }
+
+  .g-leg-edge svg { color: var(--fg-soft); }
+
+  .g-leg-hint {
+    color: var(--fg-mute);
+    margin-left: auto;
+  }
+}
+
+// ── Top tag rank list ─────────────────────────────────────────────────
+.tag-rank {
+  display: flex;
+  flex-direction: column;
+
+  li {
+    display: grid;
+    grid-template-columns: 200px 1fr 48px;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+    cursor: pointer;
+    align-items: center;
+    text-decoration: none;
+    position: relative; // per stretched link
+
+    &:last-child { border-bottom: 0; }
+
+    &:hover .bar-fill { filter: brightness(1.1); }
+    &:hover .tag { border-color: var(--accent); color: var(--accent); }
+
+    // Stretched link — copre tutta la riga; la .tag è sopra (z-index: 1)
+    .rank-link {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      color: inherit;
+      text-decoration: none;
+    }
+    .tag { position: relative; z-index: 1; }
+  }
+
+  .bar {
+    height: 4px;
+    background: var(--bg-soft);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    background: var(--accent);
+    transition: width .3s;
+  }
+
+  .meta.n {
+    text-align: right;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--fg-soft);
+  }
+}

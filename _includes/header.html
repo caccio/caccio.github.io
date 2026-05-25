@@ -1,0 +1,28 @@
+<header class="bh">
+  <div class="bh-inner">
+    <a class="bh-brand" href="{{ '/' | relative_url }}">
+      <span class="dot"></span>
+      <span>Caccio&rsquo;s Blog</span>
+      <span class="sub">/ note tecniche</span>
+    </a>
+
+    <nav class="bh-nav" aria-label="Navigazione principale">
+      <a href="{{ '/' | relative_url }}"
+         {% if page.url == '/' %}aria-current="page"{% endif %}>
+        Home
+      </a>
+      <a href="{{ '/aree/' | relative_url }}"
+         {% if page.url contains '/aree' %}aria-current="page"{% endif %}>
+        Aree
+      </a>
+      <a href="{{ '/punti/' | relative_url }}"
+         {% if page.url contains '/punti' %}aria-current="page"{% endif %}>
+        Punti
+      </a>
+      <a href="{{ '/about/' | relative_url }}"
+         {% if page.url contains '/about' %}aria-current="page"{% endif %}>
+        About
+      </a>
+    </nav>
+  </div>
+</header>

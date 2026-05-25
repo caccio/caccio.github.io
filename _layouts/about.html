@@ -1,0 +1,21 @@
+---
+layout: default
+---
+<main class="b-page narrow">
+  <div class="about-hd">
+    <div class="pic" aria-hidden="true"></div>
+    <div>
+      <h1>{{ page.person_name | default: "Caccio" }}</h1>
+      <div class="role">{{ page.role | default: "software engineer · roma · esperimenti con qubit" }}</div>
+      <div class="tag-row">
+        {%- for pill in page.pills -%}
+          <span class="tag"><span class="lbl">{{ pill }}</span></span>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+
+  <div class="about-body">
+    {{ content }}
+  </div>
+</main>

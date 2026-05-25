@@ -1,0 +1,110 @@
+// ─── Pagina About ─────────────────────────────────────────────────────
+
+.about-hd {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 28px;
+  align-items: start;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 32px;
+
+  .pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(
+      135deg,
+      var(--accent),
+      color-mix(in oklab, var(--accent) 50%, black)
+    );
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        circle at 30% 25%,
+        color-mix(in oklab, white 40%, transparent),
+        transparent 55%
+      );
+    }
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: 36px;
+    line-height: 1.1;
+    font-weight: var(--display-weight);
+    letter-spacing: var(--display-tracking);
+    margin-bottom: 8px;
+  }
+
+  .role {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--fg-mute);
+    letter-spacing: 0.04em;
+    margin-bottom: 14px;
+  }
+
+  .tag-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+}
+
+.about-body {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--fg);
+  max-width: 64ch;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  h2 {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: var(--display-weight);
+    letter-spacing: -0.012em;
+    margin-top: 24px;
+    margin-bottom: 4px;
+  }
+
+  p { color: var(--fg); }
+
+  a {
+    border-bottom: 1px solid var(--line-strong);
+    color: inherit;
+    &:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  }
+
+  strong { font-weight: 600; }
+  em     { font-style: italic; }
+}
+
+.about-stack {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 12px 20px;
+  font-size: 14px;
+  margin-top: 16px;
+
+  dt {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--fg-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding-top: 3px;
+  }
+
+  dd {
+    margin: 0;
+    color: var(--fg);
+  }
+}

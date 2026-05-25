@@ -1,0 +1,241 @@
+// ─── Componenti riusabili ────────────────────────────────────────────
+
+// ── Pillola "punto" (.tag) ────────────────────────────────────────────
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--fg-soft);
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  transition: all .15s;
+  cursor: pointer;
+  letter-spacing: 0;
+  line-height: 1.45;
+  text-decoration: none;
+
+  .lbl {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &:hover {
+    color: var(--fg);
+    border-color: var(--line-strong);
+    background: var(--bg);
+  }
+
+  // Stato attivo (pagina del punto corrente)
+  &.active {
+    color: #fff;
+    background: var(--accent);
+    border-color: var(--accent);
+    font-weight: 600;
+    padding: 5px 16px;
+    box-shadow:
+      0 1px 0 var(--accent),
+      0 6px 16px -8px color-mix(in oklab, var(--accent) 80%, transparent);
+
+    .lbl::after {
+      content: "✓";
+      font-size: 10px;
+      font-weight: 700;
+      margin-left: 8px;
+      display: inline-block;
+      line-height: 1;
+    }
+  }
+
+  // Contatore opzionale
+  .n {
+    color: var(--fg-mute);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 400;
+    padding-left: 8px;
+    margin-left: 0;
+    border-left: 1px solid var(--line);
+  }
+
+  &.active .n {
+    color: color-mix(in oklab, white 75%, var(--accent));
+    border-left-color: color-mix(in oklab, white 30%, transparent);
+  }
+}
+
+// ── Chip "area" (.cat) ────────────────────────────────────────────────
+// Pallino colorato + nome area in mono uppercase tracciata.
+// La classe CSS si chiama ancora .cat per compatibilità col CSS di riferimento;
+// nel markup Liquid usiamo la classe .cat e il data-cat con l'id area.
+.cat {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--fg-soft);
+  cursor: pointer;
+  transition: color .15s;
+  text-decoration: none;
+
+  &::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: var(--cat-color, var(--accent));
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  &:hover { color: var(--fg); }
+
+  // Colori per area
+  &[data-cat="quantum"] { --cat-color: oklch(0.55 0.16 270); }
+  &[data-cat="ai"]      { --cat-color: oklch(0.62 0.16 35);  }
+  &[data-cat="swe"]     { --cat-color: oklch(0.55 0.13 170); }
+  &[data-cat="letture"] { --cat-color: oklch(0.55 0.10 80);  }
+}
+
+// ── Meta line ─────────────────────────────────────────────────────────
+.meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--fg-mute);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  .sep { opacity: 0.4; }
+}
+
+// ── Avatar gradient ───────────────────────────────────────────────────
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), color-mix(in oklab, var(--accent) 60%, black));
+  display: inline-block;
+  flex: 0 0 32px;
+}
+
+// ── Section head (titoletto + linea) ─────────────────────────────────
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 24px;
+
+  h2 {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg-mute);
+    white-space: nowrap;
+  }
+
+  .line {
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+}
+
+// ── Index header (pagine area, punto) ─────────────────────────────────
+.idx-hd {
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .crumbs {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--fg-mute);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    a { color: var(--fg-soft); &:hover { color: var(--fg); } }
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: 38px;
+    line-height: 1.10;
+    font-weight: var(--display-weight);
+    letter-spacing: var(--display-tracking);
+  }
+
+  // Pillola inline nel titolo della pagina punto
+  .tag-h1 {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--sans);
+    font-weight: 600;
+    letter-spacing: 0;
+    font-size: 0.65em;
+    padding: 8px 18px;
+    margin-left: 10px;
+    background: var(--accent);
+    color: #fff;
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    vertical-align: middle;
+    box-shadow:
+      0 1px 0 var(--accent),
+      0 8px 22px -10px color-mix(in oklab, var(--accent) 70%, transparent);
+  }
+
+  .desc {
+    font-size: 16px;
+    color: var(--fg-soft);
+    max-width: 64ch;
+  }
+}
+
+// ── Highlight Rouge → classi nostra sintassi colori ──────────────────
+// Rouge genera classi tipo .k, .nf, .s, .c1, .nb ...
+// Le mappiamo ai colori del prototipo (che usava .kw, .fn, .st, .co).
+.highlight {
+  background: oklch(0.18 0.01 250);
+  border-radius: var(--radius);
+  overflow-x: auto;
+
+  pre {
+    margin: 0;
+    padding: 18px 22px;
+    font: 13.5px/1.55 var(--mono);
+    color: oklch(0.92 0.01 250);
+    background: transparent;
+    overflow-x: auto;
+  }
+
+  // keywords
+  .k, .kd, .kn, .kp, .kr, .kt, .ow { color: oklch(0.78 0.13 30); }
+  // commenti
+  .c, .c1, .cm, .cs, .cp { color: oklch(0.7 0.02 250); font-style: italic; }
+  // funzioni/metodi
+  .nf, .nc, .nn { color: oklch(0.8 0.13 200); }
+  // stringhe
+  .s, .s1, .s2, .se, .si, .sb, .sc { color: oklch(0.78 0.1 130); }
+  // numeri
+  .mi, .mf, .mh, .mo, .m { color: oklch(0.78 0.1 130); }
+  // operator
+  .o { color: oklch(0.78 0.13 30); }
+  // built-in / nome simbolo
+  .nb { color: oklch(0.8 0.13 200); }
+  // errori
+  .err { color: oklch(0.7 0.2 25); }
+}

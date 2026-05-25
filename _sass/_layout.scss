@@ -1,0 +1,28 @@
+// ─── Layout base ─────────────────────────────────────────────────────
+
+// Wrapper root: tutto il sito vive dentro .blog-root.
+// Il container query parte da qui.
+.blog-root {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  container-type: inline-size;
+  container-name: blog;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+// Pagina contenuto: max-width centrata + padding desktop
+.b-page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 48px 32px 80px;
+
+  // Variante stretta per post e about
+  &.narrow {
+    max-width: 720px;
+  }
+}

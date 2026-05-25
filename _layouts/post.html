@@ -1,0 +1,111 @@
+---
+layout: default
+---
+{%- comment -%}
+  Calcola minuti di lettura se non specificato in front matter
+{%- endcomment -%}
+{%- assign read_min = page.read_min -%}
+{%- unless read_min -%}
+  {%- assign words = content | number_of_words -%}
+  {%- assign read_min = words | divided_by: 200 | plus: 1 -%}
+{%- endunless -%}
+
+{%- comment -%}
+  Post correlati: condividono almeno un tag col post corrente
+{%- endcomment -%}
+{%- assign related = "" | split: "" -%}
+{%- for tag in page.tags -%}
+  {%- for tagged_post in site.tags[tag] -%}
+    {%- if tagged_post.url != page.url -%}
+      {%- unless related contains tagged_post -%}
+        {%- assign related = related | push: tagged_post -%}
+      {%- endunless -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endfor -%}
+{%- assign related = related | slice: 0, 3 -%}
+
+<main class="b-page narrow">
+
+  {%- comment -%} ── Header post ────────────────────────────────────── {%- endcomment -%}
+  <div class="post-hd">
+    <a class="back" href="{{ '/' | relative_url }}">← tutti i post</a>
+
+    <div class="cats">
+      {%- for cat in page.categories -%}
+        {%- include area-chip.html area_id=cat -%}
+      {%- endfor -%}
+    </div>
+
+    <h1>{{ page.title | escape }}</h1>
+
+    {%- if page.excerpt -%}
+      <p class="deck">{{ page.excerpt | strip_html }}</p>
+    {%- endif -%}
+
+    <div class="post-meta-row">
+      <span class="meta">
+        <span>{{ page.date | date: "%-d %b %Y" }}</span>
+        <span class="sep">&middot;</span>
+        <span>{{ read_min }} min</span>
+      </span>
+      {%- if page.tags.size > 0 -%}
+        <span class="sep-dot">&bull;</span>
+        <div class="post-meta-tags">
+          {%- for tag in page.tags -%}
+            {%- include tag-pill.html tag=tag -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- comment -%} ── Corpo articolo ──────────────────────────────────── {%- endcomment -%}
+  <div class="article">
+    {{ content }}
+  </div>
+
+  {%- comment -%} ── Footer articolo ─────────────────────────────────── {%- endcomment -%}
+  <div class="article-foot">
+    {%- if page.tags.size > 0 -%}
+    <div>
+      <div class="foot-section-label">punti</div>
+      <div class="tags-row">
+        {%- for tag in page.tags -%}
+          {%- include tag-pill.html tag=tag -%}
+        {%- endfor -%}
+      </div>
+    </div>
+    {%- endif -%}
+
+    <div class="share">
+      <span>condividi</span>
+      <a href="https://twitter.com/intent/tweet?url={{ page.url | absolute_url | url_encode }}&text={{ page.title | url_encode }}"
+         rel="noopener" target="_blank">x</a>
+      <span class="sep">&middot;</span>
+      <a href="https://mastodon.social/share?text={{ page.title | url_encode }}%20{{ page.url | absolute_url | url_encode }}"
+         rel="noopener" target="_blank">mastodon</a>
+      <span class="sep">&middot;</span>
+      <button onclick="navigator.clipboard.writeText(window.location.href).then(()=>this.textContent='copiato!').catch(()=>{})"
+              style="font:11px var(--mono);color:var(--fg-soft);cursor:pointer;border:0;background:0;padding:0">
+        link
+      </button>
+    </div>
+  </div>
+
+  {%- comment -%} ── Continua a leggere ───────────────────────────────── {%- endcomment -%}
+  {%- if related.size > 0 -%}
+  <section style="margin-top: 56px">
+    <div class="section-head">
+      <h2>continua a leggere</h2>
+      <div class="line"></div>
+    </div>
+    <div class="post-list">
+      {%- for post in related -%}
+        {%- include post-card.html post=post -%}
+      {%- endfor -%}
+    </div>
+  </section>
+  {%- endif -%}
+
+</main>

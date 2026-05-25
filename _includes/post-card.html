@@ -1,0 +1,35 @@
+{%- assign p = include.post -%}
+{%- assign read_min = p.read_min -%}
+{%- unless read_min -%}
+  {%- assign words = p.content | number_of_words -%}
+  {%- assign read_min = words | divided_by: 200 | plus: 1 -%}
+{%- endunless -%}
+{%- comment -%}
+  NON avvolgiamo il card in <a> perché row1 contiene chip <a class="cat">.
+  Link annidati spezzano il layout. Usiamo lo stretched-link sull'h3:
+  .post-card { position: relative }
+  h3 a.post-card-link::after { position: absolute; inset: 0; z-index: 0 }
+  .row1, .row2 { position: relative; z-index: 1 }
+{%- endcomment -%}
+<article class="post-card">
+  <div class="row1">
+    {%- for cat in p.categories limit: 2 -%}
+      {%- include area-chip.html area_id=cat -%}
+    {%- endfor -%}
+  </div>
+  <h3>
+    <a class="post-card-link" href="{{ p.url | relative_url }}">
+      {{- p.title | escape -}}
+    </a>
+  </h3>
+  {%- if p.excerpt -%}
+    <p class="ex">{{ p.excerpt | strip_html | truncate: 140 }}</p>
+  {%- endif -%}
+  <div class="row2">
+    <span class="meta">
+      <span>{{ p.date | date: "%-d %b %Y" }}</span>
+      <span class="sep">&middot;</span>
+      <span>{{ read_min }} min</span>
+    </span>
+  </div>
+</article>
