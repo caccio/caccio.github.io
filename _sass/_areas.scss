@@ -5,17 +5,35 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0;
+  align-items: stretch;   // esplicito: ogni <li> si estende all'altezza della riga
 
-  .item {
-    padding: 28px 28px 28px 0;
+  li {
+    display: block;        // forza block: elimina display:list-item che rompe lo stretch
     border-bottom: 1px solid var(--line);
+
+    // Padding e bordi sugli <li> (non su .item:nth-child che non funziona mai)
+    &:nth-child(odd) {
+      border-right: 1px solid var(--line);
+      padding-right: 28px;
+    }
+    &:nth-child(even) {
+      padding-left: 28px;
+    }
+
+    // Ultima riga: niente bordo basso
+    &:nth-last-child(-n+2) { border-bottom: 0; }
+  }
+
+  // Link che occupa tutta la cella con layout flex verticale
+  .item {
+    padding: 28px 0;
     cursor: pointer;
     text-decoration: none;
     color: inherit;
-    display: block;
-
-    &:nth-child(odd)  { border-right: 1px solid var(--line); }
-    &:nth-child(even) { padding-left: 28px; padding-right: 0; }
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-sizing: border-box;
 
     &:hover h3 .name { color: var(--accent); }
 
