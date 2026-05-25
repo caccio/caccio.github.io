@@ -7,7 +7,7 @@ tags: [quantum-computing, optimization, d-wave, operations-research, roadef]
 math: false
 author: Stefano Cazzella
 permalink: /dwave-roadef-2020-optimization
-excerpt: I problemi di ottimizzazione rappresentano il primo ambito in cui un approccio quantistico - di tipo inspired o basato su annealer - può offrire vantaggi concreti. Per valutare questo potenziale, ho deciso di partire da un problema reale di ottimizzazione industriale, formularlo come modello quadratico con variabili binarie e provare a risolverlo utilizzando il solver ibrido di D-Wave.
+excerpt: Il primo ambito di applicazione per le tecnologie quantistiche è quello dell'ottimizzazione. Per avere un'idea del potenziale attuale di queste tecnologie serve un problema industriale con dati reali e la challenge ROADEF/EURO 2020 rappresenta un ottimo benchmark fra computazione classica e la risoluzione con il solver ibrido di D-Wave.
 ---
 
 I problemi di ottimizzazione rappresentano il primo ambito in cui un approccio quantistico - di tipo inspired o basato su annealer - può offrire vantaggi concreti. Per valutare questo potenziale, ho deciso di partire da un problema reale di ottimizzazione industriale, formularlo come modello quadratico con variabili binarie e provare a risolverlo utilizzando il solver ibrido di D-Wave.

@@ -20,6 +20,7 @@
   .hero-cover   { order: -1; aspect-ratio: 16/9; }
 
   .post-list { grid-template-columns: 1fr; }
+  // Reset padding asimmetrico e bordo verticale: colonna unica
   .post-list .post-card:nth-child(odd),
   .post-list .post-card:nth-child(even) {
     padding: 24px 0;
@@ -28,25 +29,36 @@
     padding-right: 0;
     border-bottom: 1px solid var(--line);
   }
+  // La variante "minimal" ha selettori più specifici (data-card + nth-child):
+  // bisogna parificare la specificità nel container query.
+  .blog-root[data-cards="minimal"] .post-list .post-card:nth-child(odd),
+  .blog-root[data-cards="minimal"] .post-list .post-card:nth-child(even) {
+    padding-left: 0;
+    padding-right: 0;
+    border-right: 0;
+  }
   .blog-root[data-cards="shadow"] .post-list .post-card,
   .blog-root[data-cards="bordered"] .post-list .post-card { padding: 22px; }
 
+  // Il padding/bordo del cat-list è sugli <li>, non sugli .item → selettori corretti
   .cat-list { grid-template-columns: 1fr; }
-  .cat-list .item:nth-child(odd),
-  .cat-list .item:nth-child(even) {
-    padding: 24px 0;
-    border-right: 0;
+  .cat-list li:nth-child(odd),
+  .cat-list li:nth-child(even) {
     padding-left: 0;
     padding-right: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
   }
+  // In colonna singola solo l'ultimo elemento non ha bordo inferiore
+  .cat-list li:last-child { border-bottom: 0; }
 
+  // home-cat-grid: colonna singola; padding/bordo sugli <li>
   .home-cat-grid { grid-template-columns: 1fr; }
-  .home-cat-item:nth-child(odd),
-  .home-cat-item:nth-child(even) {
-    padding: 18px 0;
-    border-right: 0;
+  .home-cat-grid li:nth-child(odd),
+  .home-cat-grid li:nth-child(even) {
     padding-left: 0;
     padding-right: 0;
+    border-right: 0;
   }
 }
 

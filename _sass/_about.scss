@@ -61,7 +61,7 @@
   font-size: 17px;
   line-height: 1.7;
   color: var(--fg);
-  max-width: 64ch;
+  // Niente max-width: stessa larghezza del corpo della pagina
   display: flex;
   flex-direction: column;
   gap: 18px;

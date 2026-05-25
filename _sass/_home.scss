@@ -14,10 +14,9 @@
   cursor: pointer;
   position: relative; // necessario per lo stretched link
 
-  // Nessuna immagine: colonna singola, testo non troppo largo
+  // Nessuna immagine: colonna singola, testo occupa tutta la larghezza
   &.hero--solo {
     grid-template-columns: 1fr;
-    max-width: 680px;
   }
 
   // Stretched link: copre tutta la card
@@ -61,7 +60,7 @@
   color: var(--fg-soft);
   font-size: 17px;
   line-height: 1.55;
-  max-width: 56ch;
+  // Niente max-width: stessa larghezza del titolo
 }
 
 .hero .meta { margin-top: 24px; }
@@ -321,6 +320,12 @@
   gap: 0;
   margin-top: 24px;
   border-top: 1px solid var(--line);
+
+  // Padding e bordo divisorio sugli <li> (diretti figli del grid),
+  // non su .home-cat-item che è figlio unico di <li> e quindi
+  // :nth-child conta sempre 1 (sempre "odd") → il selettore era rotto.
+  li:nth-child(odd)  { padding-right: 22px; border-right: 1px solid var(--line); }
+  li:nth-child(even) { padding-left: 22px; }
 }
 
 .home-cat-item {
@@ -328,15 +333,12 @@
   grid-template-columns: auto 1fr auto auto;
   align-items: center;
   gap: 14px;
-  padding: 18px 0;
+  padding: 18px 0;           // solo padding verticale; quello orizzontale è sull'<li>
   border-bottom: 1px solid var(--line);
   cursor: pointer;
-  transition: padding .15s, background .15s;
+  transition: background .15s;
   text-decoration: none;
   color: inherit;
-
-  &:nth-child(odd)  { padding-right: 22px; border-right: 1px solid var(--line); }
-  &:nth-child(even) { padding-left: 22px; }
 
   &:hover .home-cat-arrow { transform: translateX(3px); color: var(--accent); }
   &:hover .home-cat-name  { color: var(--accent); }

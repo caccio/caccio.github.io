@@ -121,7 +121,19 @@ layout: default
     {%- endif -%}
   {%- endfor -%}
 
-  {%- assign top_count = site.tags[top8[0]].size | default: 1 -%}
+  {%- comment -%}
+    top_count: numero di post del tag più frequente.
+    Non usiamo site.tags[top8[0]].size perché il subscript dinamico
+    annidato in Liquid restituisce nil → default: 1 → barre > 100%.
+    Iteriamo direttamente site.tags per trovare il massimo.
+  {%- endcomment -%}
+  {%- assign top_count = 0 -%}
+  {%- for tag in site.tags -%}
+    {%- if tag[1].size > top_count -%}
+      {%- assign top_count = tag[1].size -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- if top_count < 1 -%}{%- assign top_count = 1 -%}{%- endif -%}
   <ul class="tag-rank">
     {%- for tag_name in top8 -%}
       {%- assign tag_count = site.tags[tag_name].size -%}

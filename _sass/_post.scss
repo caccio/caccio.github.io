@@ -110,9 +110,10 @@
   ul { list-style: disc; }
   ol { list-style: decimal; }
 
-  // Blocco matematica (KaTeX display)
+  // Blocco matematica display (MathJax 3 e fallback .math-block)
   .math-block,
-  .katex-display {
+  mjx-container[display="true"] {
+    display: block;
     padding: 18px 22px;
     background: var(--bg-soft);
     border-left: 3px solid var(--accent);
@@ -147,6 +148,16 @@
     border: 1px solid var(--line);
     border-radius: 3px;
     padding: 1px 5px;
+  }
+
+  // Reset: la regola "inline code" sopra colpisce anche il <code>
+  // dentro i blocchi di Rouge (che non ha class). Qui la azzeriamo.
+  .highlight code {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    font-size: inherit;
   }
 
   // Mermaid: i blocchi fenced ```mermaid vengono trasformati in
@@ -217,9 +228,8 @@
   }
 }
 
-// ── Override KaTeX ────────────────────────────────────────────────────
-.blog-root .katex { font-size: 1.05em; }
-.blog-root .katex-display { margin: 0; }
+// ── MathJax display: reset margini automatici ─────────────────────────
+.blog-root mjx-container[display="true"] { margin: 0; }
 
 // ── Footer articolo ───────────────────────────────────────────────────
 .article-foot {
