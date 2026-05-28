@@ -3,7 +3,9 @@ layout: default
 ---
 <main class="b-page narrow">
   <div class="about-hd">
-    <div class="pic" aria-hidden="true"></div>
+    <div class="pic">
+      <img src="/images/blog/stefano-cazzella.jpg" alt="{{ page.person_name | default: 'Caccio' }}">
+    </div>
     <div>
       <h1>{{ page.person_name | default: "Caccio" }}</h1>
       <div class="role">{{ page.role | default: "software engineer · roma · esperimenti con qubit" }}</div>
