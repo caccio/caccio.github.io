@@ -1,0 +1,382 @@
+// ─── Home ────────────────────────────────────────────────────────────
+
+// ── Hero ──────────────────────────────────────────────────────────────
+// Usa <div class="hero"> + stretched link sull'h1 → no link annidati.
+.hero {
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 48px;
+  display: grid;
+  // Colonna testo occupa il resto; colonna immagine si adatta alla larghezza naturale.
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: center;
+  cursor: pointer;
+  position: relative; // necessario per lo stretched link
+
+  // Nessuna immagine: colonna singola, testo occupa tutta la larghezza
+  &.hero--solo {
+    grid-template-columns: 1fr;
+  }
+
+  // Stretched link: copre tutta la card
+  .hero-link {
+    color: inherit;
+    text-decoration: none;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0; // sotto le chip eyebrow (z-index: 1)
+    }
+  }
+
+  // Chip e meta sopra lo stretched link
+  .hero-eyebrow,
+  .meta { position: relative; z-index: 1; }
+
+  &:hover .hero-link { color: var(--accent); }
+}
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.hero h1 {
+  font-family: var(--serif);
+  font-size: 44px;
+  line-height: 1.08;
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-tracking);
+  margin-bottom: 18px;
+  transition: color .15s;
+}
+
+.hero .ex {
+  color: var(--fg-soft);
+  font-size: 17px;
+  line-height: 1.55;
+  // Niente max-width: stessa larghezza del titolo
+}
+
+.hero .meta { margin-top: 24px; }
+
+// Cover gradient placeholder
+.hero-cover {
+  aspect-ratio: 4/3;
+  border-radius: var(--radius);
+  background: linear-gradient(
+    135deg,
+    oklch(0.85 0.08 var(--hue, 220)),
+    oklch(0.70 0.12 var(--hue, 220))
+  );
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at 30% 30%,
+      color-mix(in oklab, white 30%, transparent),
+      transparent 60%
+    );
+  }
+
+  .tag-mono {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    font: 10px var(--mono);
+    padding: 4px 8px;
+    background: rgba(255,255,255,0.85);
+    border-radius: 3px;
+    color: #1a1a1a;
+    backdrop-filter: blur(8px);
+    z-index: 1;
+  }
+}
+
+// Prima immagine del post hero — larghezza naturale, cappata
+.hero-img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: min(480px, 42%);   // non supera il 42% del contenitore
+  max-height: 420px;
+  object-fit: contain;
+  border-radius: var(--radius);
+  align-self: center;
+}
+
+// ── Post list (griglia 2 colonne) ─────────────────────────────────────
+.post-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+
+  &.single { grid-template-columns: 1fr; }
+}
+
+.post-card {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+  transition: background .15s;
+  color: inherit;
+  // Flex colonna: row2/meta si posiziona sempre in fondo → allineamento tra le due celle della stessa riga
+  display: flex;
+  flex-direction: column;
+  position: relative; // necessario per lo stretched link
+
+  // Stretched link sull'h3: copre tutta la card, sta sotto le chip (z-index 0)
+  // Tecnica: ::after posizionato assoluto, la card è position:relative
+  h3 .post-card-link {
+    color: inherit;
+    text-decoration: none;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+  }
+
+  // Row1 (chip area) e row2 (meta) sopra lo stretched link
+  .row1, .row2 {
+    position: relative;
+    z-index: 1;
+  }
+
+  // Colonna di sinistra: bordo destro + padding destro
+  .post-list &:nth-child(odd) {
+    padding-right: 28px;
+    border-right: 1px solid var(--line);
+  }
+  // Colonna di destra: padding sinistro
+  .post-list &:nth-child(even) {
+    padding-left: 28px;
+  }
+  // Ultima riga: niente bordo basso
+  .post-list &:nth-last-child(-n+2):not(:nth-last-child(1):nth-child(odd)) {
+    border-bottom: 0;
+  }
+
+  // Single column: reset padding
+  .post-list.single & {
+    padding: 28px 0;
+    border-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .row1 {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+
+  h3 {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.18;
+    font-weight: var(--display-weight);
+    letter-spacing: var(--display-tracking);
+    margin-bottom: 10px;
+    transition: color .15s;
+  }
+
+  .ex {
+    color: var(--fg-soft);
+    font-size: 14.5px;
+    line-height: 1.55;
+  }
+
+  .row2 {
+    margin-top: auto;   // spinge il meta sempre al fondo della card
+    padding-top: 14px;  // gap minimo anche senza excerpt
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  &:hover h3 { color: var(--accent); }
+}
+
+// ── Varianti card-style ───────────────────────────────────────────────
+
+// Shadow
+.blog-root[data-cards="shadow"] .post-card {
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 22px;
+  box-shadow: 0 1px 0 var(--line), 0 4px 14px -8px rgba(0,0,0,0.08);
+  transition: box-shadow .2s, transform .15s;
+}
+.blog-root[data-cards="shadow"] .post-list { gap: 16px; }
+.blog-root[data-cards="shadow"] .post-list .post-card {
+  border-right: 0;
+  padding-left: 22px;
+  padding-right: 22px;
+  border-bottom: 1px solid var(--line);
+}
+.blog-root[data-cards="shadow"] .post-card:hover {
+  box-shadow: 0 1px 0 var(--line), 0 10px 28px -10px rgba(0,0,0,0.18);
+  transform: translateY(-2px);
+}
+
+// Bordered
+.blog-root[data-cards="bordered"] .post-card {
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 22px;
+}
+.blog-root[data-cards="bordered"] .post-list { gap: 14px; }
+.blog-root[data-cards="bordered"] .post-list .post-card {
+  border-right: 1px solid var(--line);
+  padding-left: 22px;
+  padding-right: 22px;
+  border-bottom: 1px solid var(--line);
+}
+.blog-root[data-cards="bordered"] .post-card:hover { border-color: var(--accent); }
+
+// Minimal (divider only)
+.blog-root[data-cards="minimal"] .post-card {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  padding: 24px 0;
+}
+.blog-root[data-cards="minimal"] .post-list { gap: 0; }
+.blog-root[data-cards="minimal"] .post-list .post-card:nth-child(odd) {
+  padding-right: 28px;
+  border-right: 1px solid var(--line);
+  padding-left: 0;
+}
+.blog-root[data-cards="minimal"] .post-list .post-card:nth-child(even) {
+  padding-left: 28px;
+  padding-right: 0;
+}
+
+// ── Archivio (lista testo) ─────────────────────────────────────────────
+.archive-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.archive-item {
+  display: grid;
+  grid-template-columns: 110px 1fr auto;
+  gap: 18px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+  align-items: baseline;
+  text-decoration: none;
+  color: inherit;
+
+  &:hover .archive-title { color: var(--accent); }
+
+  .archive-date {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--fg-mute);
+    white-space: nowrap;
+  }
+
+  .archive-title {
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.3;
+    transition: color .15s;
+  }
+
+  .archive-min {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--fg-mute);
+    white-space: nowrap;
+  }
+}
+
+// ── Footer aree nella home ────────────────────────────────────────────
+.home-cat-footer { margin-top: 64px; }
+
+.home-cat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin-top: 24px;
+  border-top: 1px solid var(--line);
+
+  // Padding e bordo divisorio sugli <li> (diretti figli del grid),
+  // non su .home-cat-item che è figlio unico di <li> e quindi
+  // :nth-child conta sempre 1 (sempre "odd") → il selettore era rotto.
+  li:nth-child(odd)  { padding-right: 22px; border-right: 1px solid var(--line); }
+  li:nth-child(even) { padding-left: 22px; }
+}
+
+.home-cat-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 0;           // solo padding verticale; quello orizzontale è sull'<li>
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+  transition: background .15s;
+  text-decoration: none;
+  color: inherit;
+
+  &:hover .home-cat-arrow { transform: translateX(3px); color: var(--accent); }
+  &:hover .home-cat-name  { color: var(--accent); }
+}
+
+.home-cat-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--cat-color, var(--accent));
+
+  &[data-cat="quantum"] { --cat-color: oklch(0.55 0.16 270); }
+  &[data-cat="ai"]      { --cat-color: oklch(0.62 0.16 35);  }
+  &[data-cat="swe"]     { --cat-color: oklch(0.55 0.13 170); }
+  &[data-cat="letture"] { --cat-color: oklch(0.55 0.10 80);  }
+}
+
+.home-cat-name {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: var(--display-weight);
+  letter-spacing: -0.01em;
+  color: var(--fg);
+  transition: color .15s;
+}
+
+.home-cat-count {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--fg-soft);
+  font-variant-numeric: tabular-nums;
+
+  .u { color: var(--fg-mute); margin-left: 2px; }
+}
+
+.home-cat-arrow {
+  font-family: var(--sans);
+  color: var(--fg-mute);
+  font-size: 16px;
+  transition: transform .15s, color .15s;
+}

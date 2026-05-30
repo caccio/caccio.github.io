@@ -1,0 +1,32 @@
+---
+layout: default
+---
+<main class="b-page">
+  <div class="idx-hd">
+    <div class="crumbs">
+      <a href="{{ '/' | relative_url }}">home</a>
+      <span>/</span>
+      <span>aree</span>
+    </div>
+    <h1>Mappa delle Aree</h1>
+    <p class="desc">Le quattro aree che attraversano il blog. Un post può appartenere a più aree quando vive sull&rsquo;intersezione.</p>
+  </div>
+
+  <ul class="cat-list">
+    {%- for area in site.data.areas -%}
+      {%- assign area_posts = site.categories[area.id] -%}
+      {%- assign area_count = area_posts | size -%}
+      <li>
+        <a class="item" href="{{ '/aree/' | append: area.id | append: '/' | relative_url }}">
+          <h3>
+            <span class="cat" data-cat="{{ area.id }}" style="pointer-events:none">
+              <span class="name">{{ area.name }}</span>
+            </span>
+            <span class="n">{{ area_count }} post</span>
+          </h3>
+          <p>{{ area.desc }}</p>
+        </a>
+      </li>
+    {%- endfor -%}
+  </ul>
+</main>

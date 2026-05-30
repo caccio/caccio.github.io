@@ -1,0 +1,67 @@
+// ─── Pagine Aree ─────────────────────────────────────────────────────
+
+// ── Griglia indice aree (.cat-list) ───────────────────────────────────
+.cat-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: stretch;   // esplicito: ogni <li> si estende all'altezza della riga
+
+  li {
+    display: block;        // forza block: elimina display:list-item che rompe lo stretch
+    border-bottom: 1px solid var(--line);
+
+    // Padding e bordi sugli <li> (non su .item:nth-child che non funziona mai)
+    &:nth-child(odd) {
+      border-right: 1px solid var(--line);
+      padding-right: 28px;
+    }
+    &:nth-child(even) {
+      padding-left: 28px;
+    }
+
+    // Ultima riga: niente bordo basso
+    &:nth-last-child(-n+2) { border-bottom: 0; }
+  }
+
+  // Link che occupa tutta la cella con layout flex verticale
+  .item {
+    padding: 28px 0;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-sizing: border-box;
+
+    &:hover h3 .name { color: var(--accent); }
+
+    h3 {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: var(--display-weight);
+      letter-spacing: var(--display-tracking);
+      margin-bottom: 8px;
+
+      .n {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--fg-mute);
+        font-weight: 400;
+        letter-spacing: 0;
+      }
+
+      .name { transition: color .15s; }
+    }
+
+    p {
+      color: var(--fg-soft);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+  }
+}

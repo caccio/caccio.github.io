@@ -1,0 +1,8 @@
+{%- assign tag   = include.tag -%}
+{%- assign count = include.count -%}
+{%- assign active = include.active -%}
+<a class="tag{% if active %} active{% endif %}"
+   href="{{ '/punti/' | append: tag | append: '/' | relative_url }}">
+  <span class="lbl">{{ tag }}</span>
+  {%- if count -%}<span class="n">{{ count }}</span>{%- endif -%}
+</a>

@@ -1,0 +1,63 @@
+// ─── Reset scoped a .blog-root ───────────────────────────────────────
+// Non tocca nulla fuori dal wrapper, zero conflitti con eventuali stili
+// del tema host o del browser.
+
+.blog-root *,
+.blog-root *::before,
+.blog-root *::after {
+  box-sizing: border-box;
+}
+
+.blog-root {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  scrollbar-width: thin;
+
+  a    { color: inherit; text-decoration: none; }
+  button { font: inherit; color: inherit; cursor: pointer; border: 0; background: transparent; padding: 0; }
+  p    { margin: 0; }
+  h1, h2, h3 { margin: 0; font-weight: inherit; }
+  ul   { margin: 0; padding: 0; list-style: none; }
+  dl, dd { margin: 0; }
+  img  { display: block; max-width: 100%; }
+
+  // ── Giustificazione testo prosa ──────────────────────────────────
+  // Applicata a tutti i <p> visibili; hyphens:auto usa la lingua del
+  // documento (lang="it" sull'<html>) per le sillabazioni.
+  p {
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+  }
+
+  // Eccezioni: elementi dove la giustificazione peggiora la leggibilità
+  // (testo breve, mono, meta, archive, UI)
+  .meta,
+  .archive-date, .archive-min, .archive-title,
+  .crumbs,
+  .section-head,
+  .view-count,
+  .g-legend,
+  .home-cat-count,
+  .tag-rank .meta,
+  code, pre,
+  .highlight,
+  .footer-inner,
+  .bh-sub,
+  .post-meta-row,
+  .role,
+  .about-stack dd,
+  .about-stack dt {
+    text-align: left;
+    hyphens: none;
+    -webkit-hyphens: none;
+  }
+}
+
+// Reset globale essenziale per la pagina intera
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { font-size: 100%; }
+body { margin: 0; }

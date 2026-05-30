@@ -1,0 +1,161 @@
+---
+layout: default
+---
+{%- comment -%}
+  Calcola tag ordinati per conteggio (decrescente), poi alfabetico
+{%- endcomment -%}
+{%- assign tag_list = "" | split: "" -%}
+{%- for tag in site.tags -%}
+  {%- assign entry = tag[0] | append: "|||" | append: tag[1].size -%}
+  {%- assign tag_list = tag_list | push: entry -%}
+{%- endfor -%}
+
+{%- comment -%} Top 8 per la sezione rank {%- endcomment -%}
+{%- assign sorted_tags = site.tags | sort_natural -%}
+
+<main class="b-page">
+  <div class="idx-hd">
+    <div class="crumbs">
+      <a href="{{ '/' | relative_url }}">home</a>
+      <span>/</span>
+      <span>punti</span>
+    </div>
+    <h1>Punti di Connessione</h1>
+    <p class="desc">Ogni post è marcato con uno o più punti. Quando due punti compaiono nello stesso post sono collegati: usa il grafo per vedere come gli argomenti si intrecciano, o la nuvola per scegliere a colpo d&rsquo;occhio.</p>
+  </div>
+
+  {%- comment -%} Toggle Grafo / Nuvola + contatori {%- endcomment -%}
+  <div class="view-toggle" id="view-toggle" role="tablist">
+    <button id="btn-graph" role="tab" class="on" aria-selected="true"  onclick="setView('graph')">Grafo</button>
+    <button id="btn-cloud" role="tab"             aria-selected="false" onclick="setView('cloud')">Nuvola</button>
+    <span class="view-count">{{ site.tags.size }} punti &middot; {{ site.posts.size }} post</span>
+  </div>
+
+  {%- comment -%} Dati JSON per il grafo e la nuvola — emessi da Liquid {%- endcomment -%}
+  <script type="application/json" id="points-data">
+  {
+    "tags": [
+      {%- for tag in site.tags -%}
+        {"name": {{ tag[0] | jsonify }}, "count": {{ tag[1].size }}}{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ],
+    "posts": [
+      {%- for post in site.posts -%}
+        {"tags": [{% for t in post.tags %}{{ t | jsonify }}{% unless forloop.last %},{% endunless %}{% endfor %}]}{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ]
+  }
+  </script>
+
+  {%- comment -%} Contenitore grafo (default visibile) {%- endcomment -%}
+  <div id="tag-graph-container">
+    <div class="tag-graph-wrap">
+      <svg id="tag-graph" class="tag-graph"
+           viewBox="0 0 760 520"
+           preserveAspectRatio="xMidYMid meet"
+           aria-label="Knowledge graph dei punti"></svg>
+      <div class="g-legend">
+        <span class="g-leg-scale">
+          <span class="g-leg-dot s1"></span>
+          <span class="g-leg-dot s2"></span>
+          <span class="g-leg-dot s3"></span>
+          <span>dimensione = numero di post</span>
+        </span>
+        <span class="g-leg-edge">
+          <svg width="22" height="6" viewBox="0 0 22 6" aria-hidden="true">
+            <line x1="0" y1="3" x2="22" y2="3"
+                  stroke="currentColor" stroke-opacity="0.35" stroke-width="1.4"/>
+          </svg>
+          <span>arco = punti che compaiono nello stesso post</span>
+        </span>
+        <span class="g-leg-hint">passa il mouse su un punto per vedere a chi è collegato</span>
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} Contenitore nuvola (nascosto di default) {%- endcomment -%}
+  <div id="tag-cloud-container" hidden>
+    <div id="tag-cloud" class="tag-cloud-w"></div>
+  </div>
+
+  {%- comment -%} Sezione top 8 punti {%- endcomment -%}
+  <div class="section-head" style="margin-top: 48px">
+    <h2>punti pi&ugrave; ricorrenti</h2>
+    <div class="line"></div>
+  </div>
+
+  {%- comment -%}
+    Calcola top 8 tag per conteggio.
+    Liquid non ha un sort numerico su map, quindi usiamo un approccio manuale:
+    costruiamo una lista ordinata a mano con selection sort su un campione.
+    Per semplicità: iteriamo site.tags, raccogliamo tutti, poi slice.
+    Il vero ordinamento avverrà in JS; qui usiamo l'ordine di Jekyll.
+  {%- endcomment -%}
+  {%- assign all_tags_sized = "" | split: "" -%}
+  {%- for tag in site.tags -%}
+    {%- assign tag_entry = tag[0] | append: "|SEP|" | append: tag[1].size -%}
+    {%- assign all_tags_sized = all_tags_sized | push: tag_entry -%}
+  {%- endfor -%}
+
+  {%- comment -%}
+    Troviamo i top 8 con un loop di max-finding (Liquid non ha sort numerico).
+    Salviamo i nomi già trovati per evitare duplicati.
+  {%- endcomment -%}
+  {%- assign top8 = "" | split: "" -%}
+  {%- assign used = "" | split: "" -%}
+  {%- assign top8_max = 8 -%}
+  {%- for i in (1..8) -%}
+    {%- assign best_name  = "" -%}
+    {%- assign best_count = 0 -%}
+    {%- for tag in site.tags -%}
+      {%- unless used contains tag[0] -%}
+        {%- if tag[1].size > best_count -%}
+          {%- assign best_count = tag[1].size -%}
+          {%- assign best_name  = tag[0] -%}
+        {%- endif -%}
+      {%- endunless -%}
+    {%- endfor -%}
+    {%- if best_name != "" -%}
+      {%- assign top8 = top8 | push: best_name -%}
+      {%- assign used = used | push: best_name -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- comment -%}
+    top_count: numero di post del tag più frequente.
+    Non usiamo site.tags[top8[0]].size perché il subscript dinamico
+    annidato in Liquid restituisce nil → default: 1 → barre > 100%.
+    Iteriamo direttamente site.tags per trovare il massimo.
+  {%- endcomment -%}
+  {%- assign top_count = 0 -%}
+  {%- for tag in site.tags -%}
+    {%- if tag[1].size > top_count -%}
+      {%- assign top_count = tag[1].size -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- if top_count < 1 -%}{%- assign top_count = 1 -%}{%- endif -%}
+  <ul class="tag-rank">
+    {%- for tag_name in top8 -%}
+      {%- assign tag_count = site.tags[tag_name].size -%}
+      {%- assign pct = tag_count | times: 100 | divided_by: top_count -%}
+      <li>
+        {%- comment -%} Stretched link: <li> position:relative, <a> covers tutto. Niente link annidati. {%- endcomment -%}
+        <span class="tag">
+          <span class="lbl">{{ tag_name }}</span>
+          <span class="n">{{ tag_count }}</span>
+        </span>
+        <div class="bar">
+          <div class="bar-fill" style="width: {{ pct }}%"></div>
+        </div>
+        <span class="meta n">{{ tag_count }}</span>
+        <a class="rank-link" href="{{ '/punti/' | append: tag_name | append: '/' | relative_url }}"
+           aria-label="{{ tag_name }}"></a>
+      </li>
+    {%- endfor -%}
+  </ul>
+
+</main>
+
+<script src="{{ '/assets/js/graph.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/cloud.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/view-toggle.js' | relative_url }}"></script>

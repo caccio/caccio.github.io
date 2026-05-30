@@ -1,0 +1,5 @@
+{%- assign hue   = include.hue | default: 220 -%}
+{%- assign label = include.label | default: "copertina" -%}
+<div class="hero-cover" style="--hue: {{ hue }}">
+  <div class="tag-mono">{{ label }}</div>
+</div>

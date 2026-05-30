@@ -1,0 +1,13 @@
+{%- assign area_id = include.area_id -%}
+{%- assign area_data = site.data.areas | where: "id", area_id | first -%}
+{%- if area_data -%}
+<a class="cat" data-cat="{{ area_id }}" href="{{ '/aree/' | append: area_id | append: '/' | relative_url }}">
+  {{- area_data.short -}}
+</a>
+{%- else -%}
+{%- comment -%}
+  Fallback per categorie legacy (non nelle 4 aree fisse):
+  mostro il nome grezzo senza link colorato
+{%- endcomment -%}
+<span class="cat" style="--cat-color: var(--fg-mute)">{{ area_id }}</span>
+{%- endif -%}

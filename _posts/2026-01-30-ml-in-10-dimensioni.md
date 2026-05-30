@@ -151,5 +151,5 @@ Abbiamo dimostrato che l’apprendimento automatico, quando esteso a dieci dimen
 
 ---
 
-Versione pubblicata: [HMLCCD in 10 DAS](/docs/posts/2026/Hyperdimensional_Mechatronic_Learning_and_Collective_Consciousness_Dynamics_in_Ten_Dimensional_Astral_Spaces.pdf)
+Versione pubblicata: [HMLCCD in 10 DAS](/assets/docs/posts/2026/Hyperdimensional_Mechatronic_Learning_and_Collective_Consciousness_Dynamics_in_Ten_Dimensional_Astral_Spaces.pdf)
 

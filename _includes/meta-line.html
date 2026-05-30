@@ -1,0 +1,11 @@
+{%- assign post = include.post -%}
+{%- assign read_min = post.read_min -%}
+{%- unless read_min -%}
+  {%- assign words = post.content | number_of_words -%}
+  {%- assign read_min = words | divided_by: 200 | plus: 1 -%}
+{%- endunless -%}
+<span class="meta">
+  <span>{{ post.date | date: "%-d %b %Y" }}</span>
+  <span class="sep">&middot;</span>
+  <span>{{ read_min }} min</span>
+</span>

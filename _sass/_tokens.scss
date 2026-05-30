@@ -1,0 +1,60 @@
+// ─── Design tokens ───────────────────────────────────────────────────
+// Tutti i valori sono custom properties CSS sulla root / su .blog-root.
+// Cambiarli qui cambia l'intero tema.
+
+:root,
+.blog-root {
+  // Colori neutri
+  --bg:           #ffffff;
+  --bg-soft:      #fafafa;
+  --fg:           #0a0a0a;
+  --fg-soft:      #525252;
+  --fg-mute:      #8a8a8a;
+  --line:         #e6e6e6;
+  --line-strong:  #d4d4d4;
+
+  // Accento (blu di default — overridabile via data attribute)
+  --accent:       oklch(0.50 0.16 254);
+  --accent-soft:  color-mix(in oklab, var(--accent) 12%, transparent);
+
+  // Raggio
+  --radius: 6px;
+
+  // Tipografia — default: editorial
+  // Overridabile via [data-font-mode] sul <html>
+  --sans:             "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --serif:            "Instrument Serif", Georgia, "Times New Roman", serif;
+  --mono:             "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --display-weight:   400;
+  --display-tracking: -0.022em;
+}
+
+// ── Font mode: mono ───────────────────────────────────────────────────
+[data-font-mode="mono"] {
+  --sans:           "Geist", ui-sans-serif, system-ui, sans-serif;
+  --serif:          "Geist", ui-sans-serif, system-ui, sans-serif;
+  --mono:           "Geist Mono", ui-monospace, Menlo, monospace;
+  --display-weight: 600;
+}
+
+// ── Font mode: editorial (default in produzione) ──────────────────────
+[data-font-mode="editorial"] {
+  --sans:           "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --serif:          "Instrument Serif", Georgia, serif;
+  --mono:           "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --display-weight: 400;
+}
+
+// ── Font mode: grotesk ────────────────────────────────────────────────
+[data-font-mode="grotesk"] {
+  --sans:           "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --serif:          "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --mono:           "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --display-weight: 600;
+}
+
+// ── Colori per area — usati SOLO sui chip/dot, MAI sui nodi del grafo ─
+[data-area="quantum"] { --area-color: oklch(0.55 0.16 270); }
+[data-area="ai"]      { --area-color: oklch(0.62 0.16 35);  }
+[data-area="swe"]     { --area-color: oklch(0.55 0.13 170); }
+[data-area="letture"] { --area-color: oklch(0.55 0.10 80);  }

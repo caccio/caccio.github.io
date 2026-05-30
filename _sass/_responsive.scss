@@ -1,0 +1,218 @@
+// ─── Responsive — container queries su .blog-root ────────────────────
+// Breakpoint: 880px (tablet), 640px (phone), 420px (narrow).
+// Regole copiate fedelmente dal riferimento (blog-css.jsx).
+
+// ── Tablet ~880px ─────────────────────────────────────────────────────
+@container blog (max-width: 880px) {
+  .bh-inner { padding: 12px 22px; gap: 16px; }
+  .bh-nav   { gap: 14px; }
+  .b-page   { padding: 36px 22px 64px; }
+  .bf       { padding: 28px 22px; }
+
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    align-items: start;
+    padding-bottom: 36px;
+    margin-bottom: 36px;
+  }
+  .hero h1      { font-size: 36px; }
+  .hero-cover   { order: -1; aspect-ratio: 16/9; }
+
+  .post-list { grid-template-columns: 1fr; }
+  // Reset padding asimmetrico e bordo verticale: colonna unica
+  .post-list .post-card:nth-child(odd),
+  .post-list .post-card:nth-child(even) {
+    padding: 24px 0;
+    border-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  // La variante "minimal" ha selettori più specifici (data-card + nth-child):
+  // bisogna parificare la specificità nel container query.
+  .blog-root[data-cards="minimal"] .post-list .post-card:nth-child(odd),
+  .blog-root[data-cards="minimal"] .post-list .post-card:nth-child(even) {
+    padding-left: 0;
+    padding-right: 0;
+    border-right: 0;
+  }
+  .blog-root[data-cards="shadow"] .post-list .post-card,
+  .blog-root[data-cards="bordered"] .post-list .post-card { padding: 22px; }
+
+  // Il padding/bordo del cat-list è sugli <li>, non sugli .item → selettori corretti
+  .cat-list { grid-template-columns: 1fr; }
+  .cat-list li:nth-child(odd),
+  .cat-list li:nth-child(even) {
+    padding-left: 0;
+    padding-right: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  // In colonna singola solo l'ultimo elemento non ha bordo inferiore
+  .cat-list li:last-child { border-bottom: 0; }
+
+  // home-cat-grid: colonna singola; padding/bordo sugli <li>
+  .home-cat-grid { grid-template-columns: 1fr; }
+  .home-cat-grid li:nth-child(odd),
+  .home-cat-grid li:nth-child(even) {
+    padding-left: 0;
+    padding-right: 0;
+    border-right: 0;
+  }
+}
+
+// ── Phone ~640px ──────────────────────────────────────────────────────
+@container blog (max-width: 640px) {
+  .blog-root { font-size: 14.5px; }
+
+  // Header compatto: nav diventa pillola scrollabile sotto al brand
+  .bh-inner {
+    padding: 10px 16px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .bh-brand      { font-size: 15px; }
+  .bh-brand .sub { display: none; }
+
+  .bh-nav {
+    order: 3;
+    width: 100%;
+    margin-left: 0;
+    gap: 4px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 6px 0 4px;
+    border-top: 1px solid var(--line);
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar { display: none; }
+
+    a {
+      font-size: 13px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      color: var(--fg-soft);
+      white-space: nowrap;
+      flex: 0 0 auto;
+
+      &[aria-current="page"] {
+        color: var(--fg);
+        background: var(--bg-soft);
+      }
+      &[aria-current="page"]::after { display: none; }
+    }
+  }
+
+  .b-page { padding: 24px 16px 48px; }
+  .bf {
+    padding: 24px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+
+    .legal { flex-wrap: wrap; }
+  }
+
+  // Hero
+  .hero { gap: 18px; padding-bottom: 28px; margin-bottom: 28px; }
+  .hero-eyebrow { gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+  .hero h1 { font-size: 28px; margin-bottom: 12px; line-height: 1.12; }
+  .hero .ex   { font-size: 15px; }
+  .hero .meta { margin-top: 16px; }
+  .hero-cover { aspect-ratio: 16/10; border-radius: var(--radius); }
+
+  .section-head { gap: 12px; margin-bottom: 18px; }
+
+  // Post card
+  .post-card { padding: 22px 0 !important; }
+  .post-card h3 { font-size: 19px; }
+  .post-card .ex { font-size: 14px; }
+  .blog-root[data-cards="shadow"] .post-list .post-card,
+  .blog-root[data-cards="bordered"] .post-list .post-card { padding: 18px !important; border-radius: 10px; }
+  .blog-root[data-cards="shadow"] .post-list { gap: 12px; }
+
+  // Archivio: drop colonna data, stack
+  .archive-item {
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+  }
+  .archive-date {
+    grid-column: 1 / -1;
+    order: 2;
+    font-size: 10px !important;
+  }
+  .archive-title {
+    order: 1;
+    font-size: 16px !important;
+  }
+  .archive-min { order: 3; align-self: end; }
+
+  // Post
+  .post-hd { padding: 16px 0 24px; margin-bottom: 24px; }
+  .post-hd .cats { gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+  .post-hd h1 { font-size: 28px; margin-bottom: 14px; }
+  .post-hd .deck { font-size: 16px; margin-bottom: 18px; }
+  .post-hd .post-meta-row { gap: 10px; padding-top: 12px; }
+  .post-hd .post-meta-tags { gap: 6px; }
+  .article { font-size: 15.5px; line-height: 1.65; }
+  .article h2 { font-size: 22px; margin-top: 32px; }
+  .article .math-block,
+  .article blockquote { padding: 14px 16px; font-size: 14.5px; }
+  .article pre { padding: 14px 16px; font-size: 12.5px; }
+  .article .mermaid-block,
+  .article .language-mermaid { padding: 16px; }
+  .article-foot { margin-top: 40px; padding-top: 24px; gap: 20px; }
+  .article-foot .share { flex-wrap: wrap; }
+
+  // Tag / area index
+  .idx-hd { padding-bottom: 22px; margin-bottom: 22px; }
+  .idx-hd h1 { font-size: 26px; }
+  .idx-hd .tag-h1 { font-size: 0.6em; padding: 6px 12px; margin-left: 6px; }
+  .idx-hd .desc { font-size: 14.5px; }
+
+  // Tag rank
+  .tag-rank li { grid-template-columns: 1fr 36px; gap: 10px; padding: 10px 0; }
+  .tag-rank li .bar { grid-column: 1 / -1; }
+
+  // Toggle + cloud + grafo
+  .view-toggle { padding: 3px; gap: 4px; }
+  .view-toggle button { padding: 6px 12px; font-size: 12px; }
+  .view-toggle .view-count { display: none; }
+  .tag-cloud-w { gap: 8px 14px; padding: 18px 4px; }
+  .tag-graph-wrap { padding: 8px; }
+  .tag-graph { aspect-ratio: 4 / 5; background-size: 16px 16px; }
+  .g-legend { gap: 10px; font-size: 10.5px; }
+  .g-leg-hint { display: none; }
+
+  // About
+  .about-hd { grid-template-columns: 1fr; gap: 18px; padding-bottom: 22px; margin-bottom: 22px; }
+  .about-hd .pic { width: 84px; height: 84px; }
+  .about-hd h1 { font-size: 28px; }
+  .about-body { font-size: 15.5px; line-height: 1.65; }
+  .about-stack { grid-template-columns: 1fr; gap: 4px 0; }
+  .about-stack dt { padding-top: 14px; }
+  .about-stack dd { padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+}
+
+// ── Molto stretto ~420px ──────────────────────────────────────────────
+@container blog (max-width: 420px) {
+  .hero h1                    { font-size: 24px; }
+  .post-hd h1,
+  .idx-hd h1,
+  .about-hd h1                { font-size: 24px; }
+  .b-page                     { padding: 20px 14px 40px; }
+  .bh-inner                   { padding: 10px 14px; }
+}
+
+// ── prefers-reduced-motion ────────────────────────────────────────────
+@media (prefers-reduced-motion: reduce) {
+  .tag-graph .g-node,
+  .tag-graph .g-edge,
+  .post-card,
+  .home-cat-arrow,
+  .tag-cloud-w .tag-w {
+    transition: none !important;
+    transform: none !important;
+  }
+}

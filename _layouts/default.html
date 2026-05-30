@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="it" data-font-mode="{{ site.blog.font_mode | default: 'editorial' }}">
+<head>
+  {%- include head.html -%}
+</head>
+<body class="blog-root" data-cards="{{ site.blog.card_style | default: 'minimal' }}">
+
+  {%- include header.html -%}
+
+  {{ content }}
+
+  {%- include footer.html -%}
+
+</body>
+</html>
