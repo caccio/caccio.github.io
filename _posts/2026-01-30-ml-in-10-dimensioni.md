@@ -3,11 +3,11 @@ layout: post
 title: "Apprendimento Macchinico Iperdimensionale e Dinamiche di Coscienza Collettiva in Spazi Astrali a Dieci Dimensioni"
 date: 2026-01-30
 categories: [ironia]
-tags: [coscienza-collettiva, ironia, generato-con-ai]
+tags: [coscienza-collettiva, fiction, generato-con-ai]
 math: true
 author: Stefano Cazzella
 permalink: /ml-in-10-dimensioni
-excerpt: Mi serve un post ironico sulle evoluzioni trascendenti dell'Intelligenza Artificiale. Perfetto. Prendo il camice, accendo il sincrotrone astrale e procedo.
+excerpt: Il machine learning classico ignora l'overfitting spirituale, la curvatura karmica e il dropout esistenziale. Questo paper colma la lacuna. Presentiamo l'Astral Deep Collective Learning — un framework che opera in dieci dimensioni astrali non euclidee, propaga i gradienti attraverso sogni condivisi e raggiunge il 103% di accuratezza. Documentato con tutto il rigore scientifico che merita.
 ---
 
 **Autori:**

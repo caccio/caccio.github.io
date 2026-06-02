@@ -3,11 +3,11 @@ layout: post
 title: "La commedia del software"
 date: 2026-02-20
 categories: [ironia]
-tags: [enterprise-software, business-storytelling]
+tags: [enterprise-software, fiction, business-storytelling]
 math: true
 author: Stefano Cazzella
 permalink: /la-commedia-del-software
-excerpt: Modernizzare significa riscrivere tutto. Flessibile vuol dire non sapere cosa vuole il business. Il resto è commedia — in tre canti.
+excerpt: Modernizzare significa riscrivere tutto. Flessibile vuol dire non sapere cosa vuole il business. Il resto è commedia — in tre atti. Un viaggio dall'Inferno dei requisiti mancanti, al Purgatorio delle Change Request, fino a un Paradiso che sa di rassegnazione e sconfitta. Dante aveva Virgilio come guida nell'aldilà. Qui c'è il Sales Manager.
 ---
 ## Inferno
 
@@ -21,7 +21,7 @@ Flessibile vuol dire "non so cosa vuole fare il business" perché l'IT nelle riu
 
 Sono però sicuro di una cosa: qualsiasi nuovo modello di business emerga, la piattaforma attuale non sarà in grado di supportarlo.
 
-Ho accumulato così tanto debito tecnico, che se fosse monetizzato nessun revisore ci certificherebbe il bilancio — bancario, pubblico o industriale (altro che buon padre di famiglia).
+Ho accumulato così tanto debito tecnico, che se fosse monetizzato nessun revisore ci certificherebbe il bilancio (altro che buon padre di famiglia).
 
 Ma per fortuna ora dobbiamo "modernizzare".
 
