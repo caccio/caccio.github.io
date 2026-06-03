@@ -80,6 +80,8 @@
 
   p { color: var(--fg); }
 
+  p + p { margin-top: 1.7em; }
+
   h2 {
     font-family: var(--serif);
     font-size: 26px;
