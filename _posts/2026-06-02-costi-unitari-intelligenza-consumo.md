@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "I costi unitari dell'intelligenza a consumo"
-date: 2026-06-02
-categories: Intelligenza Artificiale
-tags: ai generative-ai llm pricing token
+date: 2026-07-10
+categories: [artificial-intelligence]
+tags: [ai, generative-ai, llm, pricing, token]
 math: false
 author: Stefano Cazzella
 excerpt: "Una lettura dei prezzi per token dei modelli di frontiera: perche' sono difficili da confrontare, come si sono mossi OpenAI, Anthropic e Google, e perche' il costo unitario non basta a spiegare il costo complessivo dell'AI nei progetti."
@@ -21,36 +21,23 @@ Il primo problema e' che non tutti i token sono uguali. Non in senso tecnico str
 
 Ci sono almeno cinque livelli di non comparabilita'.
 
-Il primo riguarda la capacita' del modello. Una tabella prezzi mette sullo stesso asse input e output, ma non misura qualita', robustezza, latenza, profondita' di ragionamento, abilita' di coding, multimodalita', affidabilita' nelle risposte lunghe o capacita' agentiche. Se un modello costa meno per token ma richiede piu' tentativi, il costo effettivo dell'attivita' puo' aumentare.
+1. La capacita' del modello. Una tabella prezzi mette sullo stesso asse input e output, ma non misura qualita', robustezza, latenza, profondita' di ragionamento, abilita' di coding, multimodalita', affidabilita' nelle risposte lunghe o capacita' agentiche. Se un modello costa meno per token ma richiede piu' tentativi, il costo effettivo dell'attivita' puo' aumentare.
 
-Il secondo riguarda il modello di prezzo. I vendor non applicano piu' solo una tariffa lineare input/output. OpenAI evidenzia sconti per batch e input in cache; Anthropic distingue input base, cache write, cache hit, batch, fast mode e data residency; Google differenzia standard, batch, flex, priority, soglie di contesto e costi di grounding. La tariffa pubblica e' quindi solo il punto di partenza.
+2. Il modello di prezzo. I vendor non applicano piu' solo una tariffa lineare input/output. OpenAI evidenzia sconti per batch e input in cache; Anthropic distingue input base, cache write, cache hit, batch, fast mode e data residency; Google differenzia standard, batch, flex, priority, soglie di contesto e costi di grounding. La tariffa pubblica e' quindi solo il punto di partenza.
 
-Il terzo riguarda la finestra di contesto. Nei modelli Google, ad esempio, Gemini 2.5 Pro ha prezzi diversi sopra e sotto i 200 mila token di prompt. Questa soglia cambia il costo reale per workload basati su documenti lunghi, repository software o conversazioni persistenti.
+3. La finestra di contesto. Nei modelli Google, ad esempio, Gemini 3.1 Pro ha prezzi diversi sopra e sotto i 200 mila token di prompt. Questa soglia cambia il costo reale per workload basati su documenti lunghi, repository software o conversazioni persistenti.
 
-Il quarto riguarda l'output. L'output costa quasi sempre piu' dell'input. In molte applicazioni reali - coding agent, analisi documentale, generazione di report, refactoring - il volume di output non e' un residuo marginale, ma una componente primaria della spesa.
+4. L'output costa quasi sempre piu' dell'input. In molte applicazioni reali - coding agent, analisi documentale, generazione di report, refactoring - il volume di output non e' un residuo marginale, ma una componente primaria della spesa.
 
-Il quinto riguarda l'architettura dell'applicazione. Prompt lunghi, contesto ripetuto, tool calling, retrieval, web search, agenti che iterano e validano il proprio lavoro: tutti questi elementi moltiplicano token e chiamate. Il prezzo unitario e' solo una variabile della funzione di costo.
+5. L'architettura dell'applicazione. Prompt lunghi, contesto ripetuto, tool calling, retrieval, web search, agenti che iterano e validano il proprio lavoro: tutti questi elementi moltiplicano token e chiamate. Il prezzo unitario e' solo una variabile della funzione di costo.
 
 ## I modelli di frontiera in successione
 
-Per rendere il confronto leggibile, considero i prezzi pubblici per milione di token, separando input e output. La tabella non pretende di essere una classifica assoluta: e' una normalizzazione editoriale dei principali passaggi di prezzo sui modelli di frontiera o sulle famiglie piu' vicine alla frontiera rese disponibili via API.
+Per rendere il confronto leggibile, considero i prezzi pubblici per milione di token, separando input e output. Il grafico non pretende di essere una classifica assoluta: e' una normalizzazione editoriale dei principali passaggi di prezzo sui modelli di frontiera o sulle famiglie piu' vicine alla frontiera rese disponibili via API.
 
-| Vendor | Modello / famiglia | Periodo indicativo | Input, $/1M token | Output, $/1M token | Nota di lettura |
-| --- | --- | ---: | ---: | ---: | --- |
-| OpenAI | GPT-4 8K | 2023 | 30 | 60 | Primo riferimento di massa per il prezzo API dei modelli frontier generalisti. |
-| OpenAI | GPT-4 Turbo | 2023 | 10 | 30 | Forte riduzione del prezzo per token rispetto a GPT-4. |
-| OpenAI | GPT-4o | 2024 | 5 | 15 | Ulteriore riduzione, con posizionamento multimodale. |
-| OpenAI | GPT-5.4 | 2026 | 2,5 | 15 | Modello frontier piu' economico nella pagina prezzi corrente. |
-| OpenAI | GPT-5.5 | 2026 | 5 | 30 | Modello piu' avanzato, con prezzo unitario piu' alto di GPT-5.4. |
-| Anthropic | Claude 3 Opus | 2024 | 15 | 75 | Prezzo premium della linea Opus. |
-| Anthropic | Claude Opus 4 / 4.1 | 2025 | 15 | 75 | Continuita' del prezzo premium sulle prime versioni Opus 4. |
-| Anthropic | Claude Opus 4.5-4.8 | 2025-2026 | 5 | 25 | Riduzione significativa del prezzo Opus mantenendo la fascia frontier. |
-| Anthropic | Claude Sonnet 4.x | 2025-2026 | 3 | 15 | Linea intermedia, spesso rilevante come frontiera economica per coding e agenti. |
-| Google | Gemini 1.5 Pro | 2024 | 7 | 21 | Prezzo iniziale elevato, legato anche al valore della lunga finestra di contesto. |
-| Google | Gemini 2.5 Pro | 2025-2026 | 1,25 / 2,5 | 10 / 15 | Prezzo differenziato sopra e sotto i 200k token di prompt. |
-| Google | Gemini 3.1 Pro Preview | 2026 | 2 / 4 | 12 / 18 | Prezzo corrente standard, anch'esso differenziato per lunghezza del contesto. |
+![Curva dei prezzi per token dei modelli di frontiera](/images/posts/2026/frontier_models_costs.png)
 
-Questa tabella mostra una dinamica interessante: le curve non scendono tutte nello stesso modo e non sempre il modello piu' nuovo costa meno del precedente.
+Il grafico mostra una dinamica interessante: le curve non scendono tutte nello stesso modo e non sempre il modello piu' nuovo costa meno del precedente.
 
 ## Tre curve diverse
 
