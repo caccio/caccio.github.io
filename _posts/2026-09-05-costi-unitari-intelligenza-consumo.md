@@ -6,12 +6,12 @@ categories: [artificial-intelligence]
 tags: [ai, generative-ai, llm, pricing, token]
 math: false
 author: Stefano Cazzella
-excerpt: "Una lettura dei prezzi per token dei modelli di frontiera: perché sono difficili da confrontare, come si sono mossi OpenAI, Anthropic e Google, e perché il costo unitario non basta a spiegare il costo complessivo dell'AI nei progetti."
+excerpt: "Il prezzo dell’intelligenza a consumo non sta scendendo allo stesso modo per tutti. Le curve di OpenAI, Anthropic e Google raccontano strategie diverse di monetizzazione della frontiera, mentre il costo per token resta solo una misura parziale del costo reale di una soluzione AI."
 ---
 
 Il prezzo dei token è diventato una delle misure più citate quando si parla del costo della Generative AI. È comodo, apparentemente oggettivo e facile da mettere in una tabella: dollari per milione di token in input, dollari per milione di token in output.
 
-Ma il token è in realtà l'unità minima del flusso di informazioni (più o meno ridondanti) scambiate con il modello, **non l'unità minima del valore del servizio** offerto dal modello stesso. Due modelli con prezzi simili possono comportarsi in modo molto diverso; due modelli con prezzi molto differenti possono invece produrre costi comparabili sullo stesso workflow, se quello più capace richiede meno iterazioni, meno correzioni o meno orchestrazione.
+Il token è in realtà l'**Il token è l’unità discreta in cui viene suddiviso il flusso di contenuti scambiato con il modello**, non l'unità minima del valore del servizio offerto dal modello stesso. Due modelli con prezzi simili possono comportarsi in modo molto diverso; due modelli con prezzi molto differenti possono invece produrre costi comparabili sullo stesso workflow, se quello più capace richiede meno iterazioni, meno correzioni o meno orchestrazione (overo meno token scambiati con il modello).
 
 Ciononostante è comunque interessante osservare come stanno evolvendo i listini, perché offrono lo spunto per riflettere sull'efficienza tecnologica e sulle strategie commerciali dei principali provider.
 
@@ -27,15 +27,15 @@ La finestra di contesto aggiunge un'ulteriore variabile: alcuni modelli applican
 
 Ci sono poi molteplici altri fattori che determinano il reale costo progettuale della AI Generativa a partire dall'architettura dell'applicazione con retrieval, tool calling, contesto ripetuto, verifiche automatiche e soprattutto workflow agentici che moltiplicano chiamate e token consumati.
 
-Per questo il prezzo per token non può essere utilizzato direttamente come misura del costo di un progetto. Può però essere un buon indicatore per osservare come i provider stanno prezzando l'accesso alla frontiera tecnologica.
+Per questo **il prezzo per token non può essere utilizzato direttamente come misura del costo di un progetto**. Può però essere un buon indicatore per osservare come i provider stanno prezzando l'accesso alla frontiera tecnologica.
 
 ## La serie storica dei modelli frontier
 
-Partiamo dall'approccio utilizzato per ricostruire delle curve di prezzo dei modelli frontier che potessero essere utili a evidenziare i trend, le evoluzioni tecnologiche e le strategie commerciali dei principali provider.
+Partiamo dall'approccio che ho utilizzato per ricostruire le curve di prezzo dei modelli di frontiera attraverso cui analizzare i trend, i tempi delle evoluzioni tecnologiche e le strategie commerciali dei principali provider.
 
 Nella ricostruzione delle curve di prezzo, per ciascun provider ho considerato, in ciascun momento temporale, il modello general-purpose o di reasoning di massima capacità effettivamente disponibile attraverso una API commerciale, sulla base del posizionamento del vendor e delle prestazioni pubblicate.
 
-Non ho quindi necessariamente seguito una specifica nomenclatura dei modelli: se una versione di Sonnet supera le capacità del precedente modello Opus, oppure l'evoluzione della linea Flash supera il precedente Pro, ho considerato il nuovo modello posizionato dal vendor stesso come il modello di frontiera del momento. 
+Non ho quindi necessariamente seguito una specifica nomenclatura dei modelli: se una versione di Sonnet superava le capacità del precedente modello Opus, oppure l'evoluzione della linea Flash supera il precedente Pro, ho considerato il nuovo modello posizionato dal vendor stesso come il modello di frontiera del momento. 
 
 Come indicatore economico ho adottato il list price standard per milione di token di output, escludendo Batch, Priority e altre modalità particolari e utilizzando, dove previsto, il tier standard della finestra di contesto.
 
@@ -77,7 +77,7 @@ Obiettivo principale è dimostrare la sostenibilità economica futura dell'enorm
 
 NVIDIA è stata fondamentale per la crescita di OpenAI, ma l'azienda sta costruendo un portafoglio molto più diversificato che comprende Microsoft, AWS, AMD, Broadcom, CoreWeave, Oracle e altri provider e sta sviluppando propri acceleratori insieme a Broadcom. Anthropic segue a sua volta una strategia multi-hardware: utilizza AWS Trainium, Google TPU e NVIDIA GPU, con AWS come principale cloud e training partner.
 
-I legami fra queste aziende sono così stretti e intricati (tipicamente caratterizzati da partecipazioni incrociate e contratti circolari) da temere che la caduta di uno di questi attori possa avere effetti a catena sull'intero ecosistema facendo scoppiare la cosiddetta bolla della AI [ma questo è argomento per un altro post].
+I legami fra queste aziende sono così stretti e intricati (tipicamente caratterizzati da partecipazioni incrociate e contratti circolari) da temere che la caduta di uno di questi attori possa avere effetti a catena sull'intero ecosistema facendo scoppiare la cosiddetta bolla della AI (ma questo è argomento per un altro post).
 
 Google parte però da una posizione strutturalmente differente.
 
