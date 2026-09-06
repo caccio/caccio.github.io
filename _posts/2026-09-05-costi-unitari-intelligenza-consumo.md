@@ -11,7 +11,7 @@ excerpt: "Il prezzo dell’intelligenza a consumo non sta scendendo allo stesso 
 
 Il prezzo dei token è diventato una delle misure più citate quando si parla del costo della Generative AI. È comodo, apparentemente oggettivo e facile da mettere in una tabella: dollari per milione di token in input, dollari per milione di token in output.
 
-Il token è in realtà l'**Il token è l’unità discreta in cui viene suddiviso il flusso di contenuti scambiato con il modello**, non l'unità minima del valore del servizio offerto dal modello stesso. Due modelli con prezzi simili possono comportarsi in modo molto diverso; due modelli con prezzi molto differenti possono invece produrre costi comparabili sullo stesso workflow, se quello più capace richiede meno iterazioni, meno correzioni o meno orchestrazione (overo meno token scambiati con il modello).
+Il token è in realtà l'**unità discreta in cui viene suddiviso il flusso di contenuti scambiato con il modello**, non l'unità minima del valore del servizio offerto dal modello stesso. Due modelli con prezzi simili possono comportarsi in modo molto diverso; due modelli con prezzi molto differenti possono invece produrre costi comparabili sullo stesso workflow, se quello più capace richiede meno iterazioni, meno correzioni o meno orchestrazione (overo meno token scambiati con il modello).
 
 Ciononostante è comunque interessante osservare come stanno evolvendo i listini, perché offrono lo spunto per riflettere sull'efficienza tecnologica e sulle strategie commerciali dei principali provider.
 
